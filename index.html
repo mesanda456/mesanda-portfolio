@@ -444,10 +444,20 @@ section {
 .skill-tag:hover { color: var(--accent); border-color: var(--accent); }
 
 /* PROJECTS */
+#projects .projects-intro {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  color: var(--muted);
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  margin-bottom: 24px;
+}
+
 #projects .projects-grid {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
   gap: 2px;
+  margin-bottom: 80px;
 }
 
 .project-card {
@@ -484,6 +494,22 @@ section {
   font-size: 28px;
   color: var(--accent);
 }
+.project-status {
+  font-family: var(--font-mono);
+  font-size: 10px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  padding: 4px 10px;
+  border-radius: 100px;
+  border: 1px solid rgba(0,255,157,0.25);
+  color: var(--accent3);
+  background: rgba(0,255,157,0.06);
+}
+.project-status.wip {
+  border-color: rgba(255,193,7,0.3);
+  color: #ffc107;
+  background: rgba(255,193,7,0.07);
+}
 .project-links a {
   color: var(--muted);
   font-size: 16px;
@@ -506,6 +532,26 @@ section {
   color: var(--muted);
   line-height: 1.7;
   margin-bottom: 24px;
+}
+.project-highlights {
+  list-style: none;
+  margin-bottom: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+.project-highlights li {
+  font-size: 13px;
+  color: var(--muted);
+  line-height: 1.5;
+  padding-left: 16px;
+  position: relative;
+}
+.project-highlights li::before {
+  content: '▸';
+  color: var(--accent);
+  position: absolute;
+  left: 0;
 }
 .project-stack {
   display: flex;
@@ -796,8 +842,8 @@ footer {
         building things that work in the real world — not just in demos.
       </p>
       <p>
-        My focus spans <span>full-stack web development</span> with Java & Spring Boot on the backend
-        and React on the frontend, as well as <span>embedded systems and robotics</span> using Arduino.
+        My focus spans <span>full-stack web development</span> with Java & Spring Boot and the MERN stack
+        on the backend, React on the frontend, and <span>embedded systems and robotics</span> using Arduino.
       </p>
       <p>
         I thrive on solving <span>complex, meaningful problems</span> and I'm actively seeking
@@ -845,6 +891,8 @@ footer {
         <span class="skill-tag">C</span>
         <span class="skill-tag">C++</span>
         <span class="skill-tag">JavaScript</span>
+        <span class="skill-tag">Dart</span>
+        <span class="skill-tag">PHP</span>
       </div>
     </div>
     <div class="skill-group">
@@ -852,9 +900,11 @@ footer {
       <div class="skill-group-title">Frontend</div>
       <div class="skill-tags">
         <span class="skill-tag">React</span>
+        <span class="skill-tag">Vite</span>
+        <span class="skill-tag">Tailwind CSS</span>
         <span class="skill-tag">HTML5</span>
         <span class="skill-tag">CSS3</span>
-        <span class="skill-tag">JavaScript</span>
+        <span class="skill-tag">Flutter</span>
       </div>
     </div>
     <div class="skill-group">
@@ -862,8 +912,10 @@ footer {
       <div class="skill-group-title">Backend</div>
       <div class="skill-tags">
         <span class="skill-tag">Spring Boot</span>
+        <span class="skill-tag">Node.js / Express</span>
         <span class="skill-tag">REST APIs</span>
         <span class="skill-tag">Java EE</span>
+        <span class="skill-tag">PHP / PDO</span>
       </div>
     </div>
     <div class="skill-group">
@@ -879,6 +931,7 @@ footer {
       <div class="skill-group-title">Hardware & Robotics</div>
       <div class="skill-tags">
         <span class="skill-tag">Arduino</span>
+        <span class="skill-tag">ESP8266</span>
         <span class="skill-tag">Embedded C</span>
         <span class="skill-tag">Sensors</span>
       </div>
@@ -890,7 +943,8 @@ footer {
         <span class="skill-tag">Git</span>
         <span class="skill-tag">GitHub</span>
         <span class="skill-tag">VS Code</span>
-        <span class="skill-tag">IntelliJ</span>
+        <span class="skill-tag">IntelliJ IDEA</span>
+        <span class="skill-tag">Docker</span>
       </div>
     </div>
   </div>
@@ -904,6 +958,101 @@ footer {
     <div class="section-line"></div>
   </div>
 
+  <div class="projects-intro reveal">Featured Work</div>
+  <div class="projects-grid" id="featured-projects">
+
+    <div class="project-card reveal">
+      <div class="project-top">
+        <div class="project-icon">🎪</div>
+        <span class="project-status wip">In Progress</span>
+      </div>
+      <div class="project-name">EventPulse</div>
+      <div class="project-desc">
+        A MERN stack event management platform with interactive floor-plan mapping —
+        built as a team Agile coursework project.
+      </div>
+      <ul class="project-highlights">
+        <li>Interactive floor plan with map search, category filtering & zone dimming</li>
+        <li>Role-based routing and business profile management</li>
+        <li>Stall detail modals with smooth auto-pan & marker animations</li>
+      </ul>
+      <div class="project-stack">
+        <span class="project-tech">MongoDB</span>
+        <span class="project-tech">Express</span>
+        <span class="project-tech">React</span>
+        <span class="project-tech">Node.js</span>
+      </div>
+    </div>
+
+    <div class="project-card reveal" style="transition-delay:0.06s">
+      <div class="project-top">
+        <div class="project-icon">🏥</div>
+        <span class="project-status">Deployed</span>
+      </div>
+      <div class="project-name">MediConnect</div>
+      <div class="project-desc">
+        A full-stack hospital management system covering patients, doctors, appointments
+        and medical records end-to-end.
+      </div>
+      <ul class="project-highlights">
+        <li>Recharts dashboards, live token queue system & bell notifications</li>
+        <li>Gemini-powered AI symptom analyzer and avatar uploads</li>
+        <li>Dockerized with Docker Compose orchestration; deployed on Vercel</li>
+      </ul>
+      <div class="project-stack">
+        <span class="project-tech">React 18</span>
+        <span class="project-tech">Spring Boot 3</span>
+        <span class="project-tech">Java 17</span>
+        <span class="project-tech">MySQL</span>
+      </div>
+    </div>
+
+    <div class="project-card reveal" style="transition-delay:0.12s">
+      <div class="project-top">
+        <div class="project-icon">🃏</div>
+        <span class="project-status wip">Building</span>
+      </div>
+      <div class="project-name">lingua-flip</div>
+      <div class="project-desc">
+        A cross-platform language flashcard app built with Flutter, following a
+        structured six-week development roadmap.
+      </div>
+      <ul class="project-highlights">
+        <li>Local persistence with Hive and state management via Riverpod</li>
+        <li>Progress tracking and stats visualized with fl_chart</li>
+      </ul>
+      <div class="project-stack">
+        <span class="project-tech">Flutter</span>
+        <span class="project-tech">Dart</span>
+        <span class="project-tech">Hive</span>
+        <span class="project-tech">Riverpod</span>
+      </div>
+    </div>
+
+    <div class="project-card reveal" style="transition-delay:0.18s">
+      <div class="project-top">
+        <div class="project-icon">🪔</div>
+        <span class="project-status">Completed</span>
+      </div>
+      <div class="project-name">Vesak Light Controller</div>
+      <div class="project-desc">
+        An ESP8266-based smart lighting controller built for Vesak decorations,
+        controllable over WiFi from any phone browser.
+      </div>
+      <ul class="project-highlights">
+        <li>4-channel relay board driving 8 distinct non-blocking light patterns</li>
+        <li>Custom mobile web UI for pattern switching, no app install needed</li>
+      </ul>
+      <div class="project-stack">
+        <span class="project-tech">ESP8266</span>
+        <span class="project-tech">Arduino</span>
+        <span class="project-tech">Embedded C</span>
+      </div>
+    </div>
+
+  </div>
+
+  <div class="projects-intro reveal">More on GitHub</div>
   <div class="projects-grid" id="github-projects">
     <div class="projects-loading">
       <div class="loader"></div>
@@ -1015,6 +1164,7 @@ new Typed('#typed', {
     'Software Engineering Student',
     'Full Stack Developer',
     'Java & Spring Boot Engineer',
+    'MERN Stack Developer',
     'Robotics Enthusiast',
     'Problem Solver'
   ],
@@ -1024,7 +1174,9 @@ new Typed('#typed', {
   backDelay: 1800
 });
 
-// GITHUB PROJECTS
+// GITHUB PROJECTS (auto-fetched, excludes ones already featured above)
+const FEATURED_NAMES = ['eventpulse', 'mediconnect', 'lingua-flip', 'linguaflip', 'vesak-light-controller', 'vesak-controller'];
+
 const icons = {
   java: '☕', spring: '🌿', react: '⚛️', python: '🐍',
   web: '🌐', robot: '🤖', arduino: '🔌', default: '📦'
@@ -1053,14 +1205,17 @@ function inferStack(repo) {
   return [...new Set(tags)].slice(0, 4);
 }
 
-fetch('https://api.github.com/users/mesanda456/repos?sort=updated&per_page=9')
+fetch('https://api.github.com/users/mesanda456/repos?sort=updated&per_page=12')
   .then(r => r.json())
   .then(repos => {
     const container = document.getElementById('github-projects');
     container.innerHTML = '';
-    const filtered = repos.filter(r => !r.fork).slice(0, 6);
+    const filtered = repos
+      .filter(r => !r.fork)
+      .filter(r => !FEATURED_NAMES.includes(r.name.toLowerCase()))
+      .slice(0, 6);
     if (!filtered.length) {
-      container.innerHTML = '<div class="projects-loading">No public repositories found.</div>';
+      container.innerHTML = '<div class="projects-loading">No additional public repositories found.</div>';
       return;
     }
     filtered.forEach((repo, i) => {
