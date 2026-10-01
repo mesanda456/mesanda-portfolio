@@ -1,0 +1,401 @@
+/**
+ * Mesanda Sethumika — Signature Portfolio Core Interactions
+ * Lightweight, high-performance, and fluid transitions.
+ */
+
+document.addEventListener('DOMContentLoaded', () => {
+  initLiveGithubStats();
+  initProjectsList();
+  initHardwareBench();
+  initContactActions();
+  initNavAndBackToTop();
+  initCardSpotlight();
+  initScrollReveal();
+  initPortrait3DTilt();
+});
+
+/* ===================================================================
+   1. Live GitHub Stats (Non-intrusive)
+   =================================================================== */
+function initLiveGithubStats() {
+  const username = 'mesanda456';
+  fetch(`https://api.github.com/users/${username}`)
+    .then(r => r.json())
+    .then(data => {
+      if (data && data.public_repos !== undefined) {
+        const repoEl = document.getElementById('stat-repos');
+        if (repoEl) repoEl.textContent = `${data.public_repos}+`;
+      }
+    })
+    .catch(() => {
+      // Graceful fallback to cached stats
+    });
+}
+
+/* ===================================================================
+   2. Projects Showcase & Architecture Modal with Staggered Transition
+   =================================================================== */
+function initProjectsList() {
+  const grid = document.getElementById('projects-grid');
+  const chips = document.querySelectorAll('.filter-chip');
+  if (!grid || typeof PROJECTS_DATA === 'undefined') return;
+
+  function render(category = 'all') {
+    grid.innerHTML = '';
+    const filtered = category === 'all'
+      ? PROJECTS_DATA
+      : PROJECTS_DATA.filter(p => p.category === category);
+
+    filtered.forEach((p, index) => {
+      const card = document.createElement('article');
+      // Alternating cinematic film-strip slide: even from left, odd from right
+      const animClass = index % 2 === 0 ? 'work-slide-left' : 'work-slide-right';
+      card.className = `project-card card-enter ${animClass}`;
+      card.id = `project-${p.id}`;
+      // Staggered animation delay
+      card.style.animationDelay = `${Math.min(index * 0.09, 0.45)}s`;
+      card.style.transitionDelay = `${Math.min(index * 0.08, 0.4)}s`;
+
+      card.innerHTML = `
+        <div>
+          <div class="card-top">
+            <span class="card-tag">${p.categoryLabel}</span>
+            <span class="card-year">${p.year}</span>
+          </div>
+
+          <h3 class="card-title">${p.name}</h3>
+          <div class="card-tagline">${p.title}</div>
+          <p class="card-desc">${p.shortDesc}</p>
+        </div>
+
+        <div>
+          <div class="card-skills">
+            ${p.skills.slice(0, 4).map(s => `<span class="skill-tag">${s}</span>`).join('')}
+            ${p.skills.length > 4 ? `<span class="skill-tag">+${p.skills.length - 4}</span>` : ''}
+          </div>
+
+          <div class="card-actions">
+            <div class="action-links">
+              <a href="${p.githubUrl}" target="_blank" rel="noopener noreferrer" class="card-link">
+                Source ↗
+              </a>
+              <button class="card-link" style="background:none;border:none;cursor:pointer;" onclick="openProjectModal('${p.id}')">
+                Architecture ↗
+              </button>
+            </div>
+
+            <a href="${p.linkedinAddUrl}" target="_blank" rel="noopener noreferrer" class="linkedin-link-btn" title="Add project to your LinkedIn profile">
+              Add to LinkedIn ↗
+            </a>
+          </div>
+        </div>
+      `;
+      grid.appendChild(card);
+    });
+
+    // Re-observe newly rendered cards for entrance animation
+    const newCards = grid.querySelectorAll('.work-slide-left, .work-slide-right');
+    if ('IntersectionObserver' in window) {
+      const cardObserver = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('active');
+            cardObserver.unobserve(entry.target);
+          }
+        });
+      }, { threshold: 0.1 });
+      newCards.forEach(c => cardObserver.observe(c));
+    } else {
+      newCards.forEach(c => c.classList.add('active'));
+    }
+  }
+
+  chips.forEach(chip => {
+    chip.addEventListener('click', () => {
+      chips.forEach(c => c.classList.remove('active'));
+      chip.classList.add('active');
+      render(chip.dataset.filter);
+    });
+  });
+
+  render('all');
+}
+
+window.openProjectModal = function(id) {
+  const modal = document.getElementById('project-modal');
+  if (!modal || typeof PROJECTS_DATA === 'undefined') return;
+
+  const project = PROJECTS_DATA.find(p => p.id === id);
+  if (!project) return;
+
+  document.getElementById('modal-title').textContent = project.name;
+  document.getElementById('modal-subtitle').textContent = `${project.title} (${project.year})`;
+  document.getElementById('modal-desc').textContent = project.fullDesc;
+
+  const highlightsEl = document.getElementById('modal-highlights');
+  highlightsEl.innerHTML = project.highlights
+    .map(h => `<li style="margin-bottom: 8px; color: var(--text-secondary); font-size: 0.92rem; line-height: 1.6;">${h}</li>`)
+    .join('');
+
+  document.getElementById('modal-arch').textContent = project.architecture;
+
+  const tagsEl = document.getElementById('modal-tags');
+  tagsEl.innerHTML = project.skills
+    .map(s => `<span class="skill-tag">${s}</span>`)
+    .join('');
+
+  document.getElementById('modal-github').href = project.githubUrl;
+  document.getElementById('modal-linkedin').href = project.linkedinAddUrl;
+
+  modal.classList.add('open');
+  document.body.style.overflow = 'hidden';
+};
+
+window.closeProjectModal = function() {
+  const modal = document.getElementById('project-modal');
+  if (modal) {
+    modal.classList.remove('open');
+    document.body.style.overflow = 'auto';
+  }
+};
+
+/* ===================================================================
+   3. Hardware Test Bench (ESP8266 Live Firmware Simulation)
+   =================================================================== */
+function initHardwareBench() {
+  const lamp1 = document.getElementById('lamp-1');
+  const lamp2 = document.getElementById('lamp-2');
+  const lamp3 = document.getElementById('lamp-3');
+  const term = document.getElementById('bench-log');
+
+  function log(msg) {
+    if (!term) return;
+    const time = new Date().toLocaleTimeString();
+    const line = document.createElement('div');
+    line.style.animation = 'fadeInUp 0.3s ease forwards';
+    line.textContent = `[${time}] ${msg}`;
+    term.appendChild(line);
+    term.scrollTop = term.scrollHeight;
+  }
+
+  function toggle(lamp, gpio, name) {
+    lamp.classList.toggle('on');
+    const state = lamp.classList.contains('on') ? 'HIGH (Closed/ON)' : 'LOW (Open/OFF)';
+    log(`GPIO ${gpio} -> ${state} | Relay '${name}' switched.`);
+  }
+
+  document.getElementById('btn-gpio-12')?.addEventListener('click', () => toggle(lamp1, 12, 'Octagon'));
+  document.getElementById('btn-gpio-13')?.addEventListener('click', () => toggle(lamp2, 13, 'Center'));
+  document.getElementById('btn-gpio-14')?.addEventListener('click', () => toggle(lamp3, 14, 'Tassels'));
+
+  document.getElementById('btn-all-toggle')?.addEventListener('click', () => {
+    const allOn = lamp1.classList.contains('on') && lamp2.classList.contains('on') && lamp3.classList.contains('on');
+    if (allOn) {
+      lamp1.classList.remove('on');
+      lamp2.classList.remove('on');
+      lamp3.classList.remove('on');
+      log('All relays switched to LOW (OFF).');
+    } else {
+      lamp1.classList.add('on');
+      lamp2.classList.add('on');
+      lamp3.classList.add('on');
+      log('All relays switched to HIGH (ON).');
+    }
+  });
+}
+
+/* ===================================================================
+   4. Contact Actions & Toast Feedback
+   =================================================================== */
+function initContactActions() {
+  const copyBtn = document.getElementById('copy-email-btn');
+  const whatsappBtn = document.getElementById('btn-send-whatsapp');
+  const form = document.getElementById('contact-form');
+
+  function showToast(text) {
+    let toast = document.getElementById('toast');
+    if (!toast) {
+      toast = document.createElement('div');
+      toast.id = 'toast';
+      toast.className = 'toast';
+      document.body.appendChild(toast);
+    }
+    toast.textContent = text;
+    toast.classList.add('show');
+    setTimeout(() => toast.classList.remove('show'), 3000);
+  }
+
+  if (copyBtn) {
+    copyBtn.addEventListener('click', () => {
+      navigator.clipboard.writeText('mesandasethumika@gmail.com').then(() => {
+        showToast('✓ Email (mesandasethumika@gmail.com) copied to clipboard');
+      });
+    });
+  }
+
+  if (whatsappBtn) {
+    whatsappBtn.addEventListener('click', () => {
+      const name = document.getElementById('contact-name')?.value || 'A visitor';
+      const msg = document.getElementById('contact-msg')?.value || 'Hi Mesanda, I saw your portfolio and would like to connect.';
+      const url = `https://wa.me/94704606591?text=${encodeURIComponent(`Hi Mesanda, my name is ${name}.\n\n${msg}`)}`;
+      window.open(url, '_blank');
+    });
+  }
+
+  if (form) {
+    form.addEventListener('submit', (e) => {
+      e.preventDefault();
+      const name = document.getElementById('contact-name').value;
+      const email = document.getElementById('contact-email').value;
+      const msg = document.getElementById('contact-msg').value;
+
+      const mailto = `mailto:mesandasethumika@gmail.com?subject=Portfolio Inquiry from ${encodeURIComponent(name)}&body=${encodeURIComponent(`From: ${name} (${email})\n\nMessage:\n${msg}`)}`;
+      window.location.href = mailto;
+    });
+  }
+}
+
+/* ===================================================================
+   5. Active Scroll Navigation & Back to Top
+   =================================================================== */
+function initNavAndBackToTop() {
+  const sections = document.querySelectorAll('section[id]');
+  const navLinks = document.querySelectorAll('.nav-link');
+  const backToTop = document.getElementById('back-to-top');
+
+  window.addEventListener('scroll', () => {
+    const scrollPos = window.scrollY;
+
+    // Show / hide back to top button
+    if (backToTop) {
+      if (scrollPos > 400) {
+        backToTop.classList.add('visible');
+      } else {
+        backToTop.classList.remove('visible');
+      }
+    }
+
+    // Scrollspy for nav active state
+    let current = '';
+    sections.forEach(section => {
+      const top = section.offsetTop - 140;
+      if (scrollPos >= top) {
+        current = section.getAttribute('id');
+      }
+    });
+
+    navLinks.forEach(link => {
+      link.classList.remove('active');
+      if (link.getAttribute('href') === `#${current}`) {
+        link.classList.add('active');
+      }
+    });
+  }, { passive: true });
+
+  // Nav Click: trigger cinematic beam sweep and highlight
+  navLinks.forEach(link => {
+    link.addEventListener('click', (e) => {
+      const targetId = link.getAttribute('href');
+      if (targetId && targetId.startsWith('#')) {
+        const targetSection = document.querySelector(targetId);
+        if (targetSection) {
+          const beam = targetSection.querySelector('.section-beam-sweep');
+          if (beam) {
+            beam.classList.remove('active');
+            void beam.offsetWidth; // force reflow
+            beam.classList.add('active');
+          }
+        }
+      }
+    });
+  });
+
+  if (backToTop) {
+    backToTop.addEventListener('click', () => {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    });
+  }
+}
+
+/* ===================================================================
+   6. Subtle Mouse Card Spotlight
+   =================================================================== */
+function initCardSpotlight() {
+  document.addEventListener('mousemove', (e) => {
+    const cards = document.querySelectorAll('.project-card, .spec-card, .portrait-frame, .bench-card, .timeline-card, .contact-card, .circuit-box');
+    cards.forEach(card => {
+      const rect = card.getBoundingClientRect();
+      const x = e.clientX - rect.left;
+      const y = e.clientY - rect.top;
+      card.style.setProperty('--mouse-x', `${x}px`);
+      card.style.setProperty('--mouse-y', `${y}px`);
+    });
+  }, { passive: true });
+}
+
+/* ===================================================================
+   7. Distinct Cinematic Section Transitions (Intersection Observer)
+   =================================================================== */
+function initScrollReveal() {
+  // Select all specialized animation elements across all sections
+  const selector = [
+    '.reveal',
+    '.reveal-scale',
+    '.section-beam-sweep',
+    '.spec-deck-1',
+    '.spec-deck-2',
+    '.spec-deck-3',
+    '.work-slide-left',
+    '.work-slide-right',
+    '.circuit-box',
+    '.hardware-aperture',
+    '.timeline-card-step',
+    '.cert-card-flip',
+    '.contact-converge-left',
+    '.contact-converge-right'
+  ].join(', ');
+
+  const elements = document.querySelectorAll(selector);
+
+  if (!('IntersectionObserver' in window)) {
+    elements.forEach(el => el.classList.add('active'));
+    return;
+  }
+
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('active');
+        observer.unobserve(entry.target);
+      }
+    });
+  }, {
+    threshold: 0.12,
+    rootMargin: '0px 0px -40px 0px'
+  });
+
+  elements.forEach(el => observer.observe(el));
+}
+
+/* ===================================================================
+   8. Subtle 3D Tilt on Portrait Card
+   =================================================================== */
+function initPortrait3DTilt() {
+  const frame = document.querySelector('.portrait-frame');
+  if (!frame) return;
+
+  frame.addEventListener('mousemove', (e) => {
+    const rect = frame.getBoundingClientRect();
+    const x = e.clientX - rect.left - rect.width / 2;
+    const y = e.clientY - rect.top - rect.height / 2;
+
+    const tiltX = (y / rect.height) * -8;
+    const tiltY = (x / rect.width) * 8;
+
+    frame.style.transform = `perspective(1000px) rotateX(${tiltX.toFixed(2)}deg) rotateY(${tiltY.toFixed(2)}deg) translateY(-4px)`;
+  });
+
+  frame.addEventListener('mouseleave', () => {
+    frame.style.transform = 'perspective(1000px) rotateX(0deg) rotateY(0deg) translateY(0)';
+  });
+}
