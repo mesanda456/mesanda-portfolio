@@ -4,6 +4,7 @@
  */
 
 document.addEventListener('DOMContentLoaded', () => {
+  initSiteEntryAnimation();
   initLiveGithubStats();
   initProjectsList();
   initHardwareBench();
@@ -399,3 +400,124 @@ function initPortrait3DTilt() {
     frame.style.transform = 'perspective(1000px) rotateX(0deg) rotateY(0deg) translateY(0)';
   });
 }
+
+/* ===================================================================
+   9. Cinematic Site Entry Animation (Boot Telemetry & Shutter Reveal)
+   =================================================================== */
+function initSiteEntryAnimation() {
+  const overlay = document.getElementById('site-entry-overlay');
+  const fill = document.getElementById('entry-progress-fill');
+  const statusText = document.getElementById('entry-status-text');
+  const percentText = document.getElementById('entry-percent-text');
+  const telemetryText = document.getElementById('entry-telemetry-text');
+  const skipBtn = document.getElementById('entry-skip-btn');
+  const replayBtn = document.getElementById('btn-replay-intro');
+
+  if (!overlay || !fill || !statusText || !percentText) return;
+
+  const telemetrySteps = [
+    { pct: 15, status: 'BOOTING CORE KERNEL...', log: '[0.02s] Initializing RTOS & ESP8266 kernel...' },
+    { pct: 40, status: 'MOUNTING MICROSERVICES...', log: '[0.24s] Spring Boot 3 & distributed bus routing loaded' },
+    { pct: 70, status: 'SYNCING REPOSITORIES...', log: '[0.65s] 38+ GitHub repositories mapped' },
+    { pct: 90, status: 'CALIBRATING SENSORS...', log: '[0.98s] Flame & MQ-2 sensor test bench online' },
+    { pct: 100, status: 'SYSTEM READY', log: '[1.20s] Access granted. Welcome, Mesanda.' }
+  ];
+
+  let currentTimer = null;
+  let isComplete = false;
+
+  function runSequence() {
+    isComplete = false;
+    overlay.classList.remove('entry-opening', 'entry-hidden');
+    document.body.classList.remove('site-entered');
+    fill.style.width = '0%';
+    percentText.textContent = '0%';
+    statusText.textContent = 'INITIALIZING CORE KERNEL...';
+    if (telemetryText) telemetryText.textContent = 'Mounting runtime environment...';
+
+    let progress = 0;
+    const duration = 1350; // 1.35 seconds for punchy cinematic feel
+    const intervalTime = 25;
+    const increment = (100 / (duration / intervalTime));
+
+    if (currentTimer) clearInterval(currentTimer);
+
+    currentTimer = setInterval(() => {
+      progress = Math.min(100, progress + increment);
+      const rounded = Math.floor(progress);
+
+      fill.style.width = `${rounded}%`;
+      percentText.textContent = `${rounded}%`;
+
+      // Update telemetry messages based on milestones
+      for (let i = telemetrySteps.length - 1; i >= 0; i--) {
+        if (rounded >= telemetrySteps[i].pct) {
+          statusText.textContent = telemetrySteps[i].status;
+          if (telemetryText) telemetryText.textContent = telemetrySteps[i].log;
+          break;
+        }
+      }
+
+      if (progress >= 100) {
+        clearInterval(currentTimer);
+        finishSequence();
+      }
+    }, intervalTime);
+  }
+
+  function finishSequence() {
+    if (isComplete) return;
+    isComplete = true;
+    if (currentTimer) clearInterval(currentTimer);
+
+    fill.style.width = '100%';
+    percentText.textContent = '100%';
+    statusText.textContent = 'SYSTEM READY';
+    if (telemetryText) telemetryText.textContent = '[1.20s] Access granted. Welcome, Mesanda.';
+
+    // Short pause on 100% before shutter slide
+    setTimeout(() => {
+      overlay.classList.add('entry-opening');
+      document.body.classList.add('site-entered');
+
+      // Hide overlay after shutter slide transition completes
+      setTimeout(() => {
+        overlay.classList.add('entry-hidden');
+      }, 850);
+    }, 140);
+  }
+
+  function skipIntro() {
+    finishSequence();
+  }
+
+  // Event Listeners for Skip
+  if (skipBtn) {
+    skipBtn.addEventListener('click', (e) => {
+      e.stopPropagation();
+      skipIntro();
+    });
+  }
+
+  // Keyboard shortcut (Escape or Space to skip)
+  document.addEventListener('keydown', (e) => {
+    if ((e.key === 'Escape' || e.key === ' ' || e.key === 'Enter') && !isComplete) {
+      skipIntro();
+    }
+  });
+
+  // Replay Trigger from navigation bar
+  if (replayBtn) {
+    replayBtn.addEventListener('click', (e) => {
+      e.preventDefault();
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+      setTimeout(() => {
+        runSequence();
+      }, 150);
+    });
+  }
+
+  // Start sequence immediately
+  runSequence();
+}
+

@@ -1608,3 +1608,350 @@ a {
   opacity: 1;
   transform: translateX(0) scale(1);
 }
+
+/* ===================================================================
+   CINEMATIC SITE ENTRY ANIMATION (BOOT SEQUENCE & DUAL SHUTTER REVEAL)
+   =================================================================== */
+.site-entry-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 100000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  pointer-events: all;
+  overflow: hidden;
+  user-select: none;
+  background: transparent;
+}
+
+/* Dual cinematic shutter doors */
+.entry-shutter {
+  position: absolute;
+  left: 0;
+  width: 100%;
+  height: 50.5%;
+  background: #030712;
+  z-index: 1;
+  transition: transform 0.85s cubic-bezier(0.77, 0, 0.175, 1);
+  will-change: transform;
+}
+
+.entry-shutter-top {
+  top: 0;
+  background: radial-gradient(circle at 50% 100%, rgba(15, 23, 42, 0.98), #030712 70%);
+  border-bottom: 1px solid rgba(56, 189, 248, 0.25);
+  box-shadow: 0 15px 40px rgba(0, 0, 0, 0.8);
+}
+
+.entry-shutter-bottom {
+  bottom: 0;
+  background: radial-gradient(circle at 50% 0%, rgba(15, 23, 42, 0.98), #030712 70%);
+  border-top: 1px solid rgba(56, 189, 248, 0.25);
+  box-shadow: 0 -15px 40px rgba(0, 0, 0, 0.8);
+}
+
+/* Cinematic Shutter Split Action */
+.site-entry-overlay.entry-opening .entry-shutter-top {
+  transform: translateY(-100%);
+}
+
+.site-entry-overlay.entry-opening .entry-shutter-bottom {
+  transform: translateY(100%);
+}
+
+.site-entry-overlay.entry-hidden {
+  display: none !important;
+}
+
+/* Center Stage Content */
+.entry-center-stage {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  max-width: 480px;
+  width: 90%;
+  padding: 24px;
+  transition: opacity 0.5s ease, transform 0.65s cubic-bezier(0.77, 0, 0.175, 1);
+}
+
+.site-entry-overlay.entry-opening .entry-center-stage {
+  opacity: 0;
+  transform: scale(1.08) translateY(-10px);
+}
+
+/* Monogram Logo & Concentric Orbit Rings */
+.entry-logo-wrapper {
+  position: relative;
+  width: 110px;
+  height: 110px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 24px;
+}
+
+.entry-logo-glow {
+  position: absolute;
+  inset: -16px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(56, 189, 248, 0.4) 0%, rgba(99, 102, 241, 0.2) 50%, transparent 70%);
+  filter: blur(14px);
+  animation: entryPulseGlow 2.4s ease-in-out infinite alternate;
+}
+
+.entry-ring-orbit {
+  position: absolute;
+  border-radius: 50%;
+  border: 1px dashed rgba(56, 189, 248, 0.35);
+  pointer-events: none;
+}
+
+.entry-ring-outer {
+  inset: -14px;
+  border-top-color: #38bdf8;
+  border-bottom-color: #818cf8;
+  animation: entrySpinCW 8s linear infinite;
+}
+
+.entry-ring-inner {
+  inset: -5px;
+  border: 1px solid rgba(129, 140, 248, 0.25);
+  border-left-color: #00f2fe;
+  animation: entrySpinCCW 5s linear infinite;
+}
+
+.entry-brand-logo {
+  width: 82px;
+  height: 82px;
+  border-radius: 18px;
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.7), 0 0 25px rgba(56, 189, 248, 0.3);
+  position: relative;
+  z-index: 2;
+  object-fit: contain;
+  animation: entryLogoFloat 3s ease-in-out infinite;
+}
+
+/* Badge & Identity */
+.entry-badge-tag {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  color: var(--accent-cyan);
+  background: rgba(56, 189, 248, 0.1);
+  border: 1px solid rgba(56, 189, 248, 0.25);
+  padding: 4px 12px;
+  border-radius: 9999px;
+  margin-bottom: 12px;
+}
+
+.entry-live-dot {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: #38bdf8;
+  box-shadow: 0 0 8px #38bdf8;
+  animation: entryPulseDot 1.2s infinite;
+}
+
+.entry-name {
+  font-size: 1.55rem;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  color: #fff;
+  margin-bottom: 6px;
+  background: linear-gradient(135deg, #ffffff 40%, #94a3b8 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.entry-role-ticker {
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  color: #94a3b8;
+  margin-bottom: 24px;
+}
+
+/* Progress bar container */
+.entry-progress-container {
+  width: 100%;
+  margin-bottom: 16px;
+}
+
+.entry-progress-bar {
+  width: 100%;
+  height: 5px;
+  background: rgba(255, 255, 255, 0.08);
+  border-radius: 9999px;
+  overflow: hidden;
+  position: relative;
+  box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.6);
+}
+
+.entry-progress-fill {
+  height: 100%;
+  width: 0%;
+  background: linear-gradient(90deg, #00f2fe 0%, #4facfe 50%, #818cf8 100%);
+  border-radius: 9999px;
+  box-shadow: 0 0 12px rgba(56, 189, 248, 0.7);
+  transition: width 0.08s linear;
+}
+
+.entry-progress-meta {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 8px;
+  font-family: var(--font-mono);
+  font-size: 0.73rem;
+  color: #64748b;
+}
+
+.entry-status-text {
+  color: #94a3b8;
+  letter-spacing: 0.05em;
+}
+
+.entry-percent-text {
+  color: var(--accent-cyan);
+  font-weight: 700;
+}
+
+/* Telemetry HUD line */
+.entry-telemetry-hud {
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  color: #00f2fe;
+  background: rgba(15, 23, 42, 0.75);
+  border: 1px solid rgba(56, 189, 248, 0.2);
+  border-radius: 6px;
+  padding: 8px 14px;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 22px;
+  min-height: 34px;
+  text-align: left;
+}
+
+.hud-prompt {
+  color: #38bdf8;
+  font-weight: 700;
+}
+
+.hud-log {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  letter-spacing: 0.03em;
+}
+
+/* Skip button */
+.entry-skip-btn {
+  background: transparent;
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  color: #94a3b8;
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  padding: 6px 16px;
+  border-radius: 9999px;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  transition: all 0.2s ease;
+}
+
+.entry-skip-btn:hover {
+  background: rgba(255, 255, 255, 0.08);
+  color: #fff;
+  border-color: rgba(56, 189, 248, 0.4);
+}
+
+/* Keyframes */
+@keyframes entrySpinCW {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+@keyframes entrySpinCCW {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(-360deg); }
+}
+
+@keyframes entryPulseGlow {
+  0% { transform: scale(0.95); opacity: 0.5; }
+  100% { transform: scale(1.15); opacity: 0.9; }
+}
+
+@keyframes entryPulseDot {
+  0%, 100% { opacity: 1; transform: scale(1); }
+  50% { opacity: 0.4; transform: scale(0.85); }
+}
+
+@keyframes entryLogoFloat {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-4px); }
+}
+
+/* Hero Section Entrance Cascade (Triggered on Site Entry) */
+body.site-entered .hero .status-badge {
+  animation: heroBadgePop 0.8s cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+
+body.site-entered .hero .hero-title {
+  animation: heroTitleSlide 0.9s cubic-bezier(0.16, 1, 0.3, 1) 0.08s both;
+}
+
+body.site-entered .hero .hero-subheadline {
+  animation: heroSubFade 0.9s cubic-bezier(0.16, 1, 0.3, 1) 0.16s both;
+}
+
+body.site-entered .hero .hero-bio {
+  animation: heroSubFade 0.9s cubic-bezier(0.16, 1, 0.3, 1) 0.24s both;
+}
+
+body.site-entered .hero .hero-badges-cluster {
+  animation: heroSubFade 0.9s cubic-bezier(0.16, 1, 0.3, 1) 0.32s both;
+}
+
+body.site-entered .hero .hero-cta-group {
+  animation: heroSubFade 0.9s cubic-bezier(0.16, 1, 0.3, 1) 0.4s both;
+}
+
+body.site-entered .portrait-stage {
+  animation: heroPortraitGlide 1s cubic-bezier(0.16, 1, 0.3, 1) 0.2s both;
+}
+
+@keyframes heroBadgePop {
+  0% { opacity: 0; transform: scale(0.8) translateY(-10px); }
+  100% { opacity: 1; transform: scale(1) translateY(0); }
+}
+
+@keyframes heroTitleSlide {
+  0% { opacity: 0; transform: translateY(30px); }
+  100% { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes heroSubFade {
+  0% { opacity: 0; transform: translateY(20px); }
+  100% { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes heroPortraitGlide {
+  0% { opacity: 0; transform: scale(0.92) translateX(30px); }
+  100% { opacity: 1; transform: scale(1) translateX(0); }
+}
+

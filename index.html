@@ -20,6 +20,49 @@
 </head>
 <body>
 
+  <!-- ==================== CINEMATIC SITE ENTRY ANIMATION ==================== -->
+  <div id="site-entry-overlay" class="site-entry-overlay" role="dialog" aria-modal="true" aria-label="Loading Mesanda Sethumika Portfolio">
+    <div class="entry-shutter entry-shutter-top"></div>
+    <div class="entry-shutter entry-shutter-bottom"></div>
+
+    <div class="entry-center-stage">
+      <div class="entry-logo-wrapper">
+        <div class="entry-logo-glow"></div>
+        <div class="entry-ring-orbit entry-ring-outer"></div>
+        <div class="entry-ring-orbit entry-ring-inner"></div>
+        <img src="assets/logo.svg" alt="Mesanda Sethumika Monogram" class="entry-brand-logo">
+      </div>
+
+      <div class="entry-identity">
+        <div class="entry-badge-tag">
+          <span class="entry-live-dot"></span> SYSTEM BOOT SEQUENCE
+        </div>
+        <h1 class="entry-name">MESANDA SETHUMIKA</h1>
+        <div class="entry-role-ticker">SOFTWARE ENGINEER &bull; DISTRIBUTED SYSTEMS &bull; IOT</div>
+      </div>
+
+      <div class="entry-progress-container">
+        <div class="entry-progress-bar">
+          <div id="entry-progress-fill" class="entry-progress-fill"></div>
+        </div>
+        <div class="entry-progress-meta">
+          <span id="entry-status-text" class="entry-status-text">INITIALIZING CORE KERNEL...</span>
+          <span id="entry-percent-text" class="entry-percent-text">0%</span>
+        </div>
+      </div>
+
+      <div class="entry-telemetry-hud">
+        <span class="hud-prompt">&gt;</span>
+        <span id="entry-telemetry-text" class="hud-log">Mounting runtime environment...</span>
+      </div>
+
+      <button id="entry-skip-btn" class="entry-skip-btn" type="button" aria-label="Skip intro animation">
+        <span>SKIP [ESC]</span>
+        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+      </button>
+    </div>
+  </div>
+
   <div class="bg-canvas"></div>
   <div class="bg-grid"></div>
 
@@ -46,6 +89,10 @@
       </nav>
 
       <div class="nav-actions">
+        <button id="btn-replay-intro" class="btn btn-secondary btn-sm" title="Replay Cinematic Entry Animation" aria-label="Replay intro animation">
+          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="margin-right: 4px; vertical-align: -1px;"><path d="M1 4v6h6"/><path d="M3.51 15a9 9 0 1 0 2.13-9.36L1 10"/></svg>
+          Intro
+        </button>
         <a href="assets/Mesanda_Sethumika_Resume.pdf" download="Mesanda_Sethumika_Resume.pdf" class="btn btn-secondary btn-sm" title="Download Official CV (PDF)">
           Resume (PDF) ↗
         </a>
