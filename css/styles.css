@@ -1955,3 +1955,253 @@ body.site-entered .portrait-stage {
   100% { opacity: 1; transform: scale(1) translateX(0); }
 }
 
+/* ===================================================================
+   ACTIVE EXPERIENCE CARD IN TIMELINE
+   =================================================================== */
+.active-experience-card {
+  border-color: rgba(16, 185, 129, 0.4) !important;
+  background: linear-gradient(135deg, rgba(16, 185, 129, 0.06) 0%, rgba(13, 17, 23, 0.95) 100%) !important;
+  box-shadow: 0 4px 24px rgba(16, 185, 129, 0.12) !important;
+  position: relative;
+}
+
+.active-experience-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 3px;
+  height: 100%;
+  background: linear-gradient(180deg, #10b981, #00f2fe);
+  border-radius: 4px 0 0 4px;
+}
+
+.exp-badge-current {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  color: #10b981;
+  background: rgba(16, 185, 129, 0.12);
+  border: 1px solid rgba(16, 185, 129, 0.3);
+  padding: 3px 10px;
+  border-radius: 9999px;
+  margin-bottom: 10px;
+}
+
+.live-dot-green {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: #10b981;
+  box-shadow: 0 0 8px #10b981;
+  animation: livePulsarGlow 1.4s infinite;
+  display: inline-block;
+}
+
+.timeline-badge-current {
+  background: rgba(16, 185, 129, 0.15) !important;
+  color: #34d399 !important;
+  border: 1px solid rgba(16, 185, 129, 0.4) !important;
+  font-weight: 700;
+}
+
+/* ===================================================================
+   RUNNING BOTTOM EXPERIENCE TICKER (CONTINUOUS RUNNING ANIMATION)
+   =================================================================== */
+.running-bottom-bar {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 42px;
+  background: rgba(3, 7, 18, 0.94);
+  border-top: 1px solid rgba(56, 189, 248, 0.28);
+  box-shadow: 0 -4px 24px rgba(0, 0, 0, 0.65), 0 -1px 12px rgba(56, 189, 248, 0.15);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  z-index: 9990;
+  display: flex;
+  align-items: center;
+  overflow: hidden;
+  user-select: none;
+  transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.running-bottom-bar.minimized {
+  transform: translateY(calc(100% - 10px));
+}
+
+.running-bottom-bar.minimized .running-toggle-btn svg {
+  transform: rotate(180deg);
+}
+
+.running-anchor {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 0 16px;
+  height: 100%;
+  background: rgba(15, 23, 42, 0.95);
+  border-right: 1px solid rgba(56, 189, 248, 0.2);
+  flex-shrink: 0;
+  z-index: 2;
+}
+
+.running-live-pulsar {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: #10b981;
+  box-shadow: 0 0 10px #10b981;
+  animation: livePulsarGlow 1.4s infinite;
+}
+
+@keyframes livePulsarGlow {
+  0%, 100% { opacity: 1; transform: scale(1); }
+  50% { opacity: 0.35; transform: scale(0.85); }
+}
+
+.running-anchor-tag {
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  font-weight: 800;
+  letter-spacing: 0.12em;
+  color: #10b981;
+}
+
+.running-track-container {
+  flex: 1;
+  overflow: hidden;
+  position: relative;
+  display: flex;
+  align-items: center;
+  height: 100%;
+  mask-image: linear-gradient(90deg, transparent, #000 3%, #000 97%, transparent);
+  -webkit-mask-image: linear-gradient(90deg, transparent, #000 3%, #000 97%, transparent);
+}
+
+.running-track {
+  display: flex;
+  width: max-content;
+  align-items: center;
+  animation: runningTickerScroll 30s linear infinite;
+  will-change: transform;
+}
+
+.running-track:hover {
+  animation-play-state: paused;
+}
+
+.running-group {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  padding-right: 20px;
+  white-space: nowrap;
+}
+
+.running-item {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  font-size: 0.82rem;
+  color: #cbd5e1;
+  font-family: var(--font-sans);
+}
+
+.running-item strong {
+  color: #fff;
+  font-weight: 700;
+}
+
+.highlight-cyan {
+  color: var(--accent-cyan);
+  font-weight: 600;
+}
+
+.running-sep {
+  color: rgba(56, 189, 248, 0.4);
+  font-size: 0.9rem;
+}
+
+.running-actions {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 0 14px;
+  height: 100%;
+  background: rgba(15, 23, 42, 0.95);
+  border-left: 1px solid rgba(56, 189, 248, 0.2);
+  flex-shrink: 0;
+  z-index: 2;
+}
+
+.running-view-link {
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  font-weight: 600;
+  color: #38bdf8;
+  padding: 3px 8px;
+  border-radius: 4px;
+  background: rgba(56, 189, 248, 0.12);
+  border: 1px solid rgba(56, 189, 248, 0.25);
+  transition: all 0.2s ease;
+  text-decoration: none;
+}
+
+.running-view-link:hover {
+  background: rgba(56, 189, 248, 0.25);
+  color: #fff;
+}
+
+.running-toggle-btn {
+  background: transparent;
+  border: none;
+  color: #94a3b8;
+  cursor: pointer;
+  padding: 4px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 4px;
+  transition: color 0.2s ease;
+}
+
+.running-toggle-btn:hover {
+  color: #fff;
+}
+
+@keyframes runningTickerScroll {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
+
+/* Adjustments for fixed elements with running bottom bar */
+.back-to-top {
+  bottom: 56px !important;
+}
+
+.footer {
+  padding-bottom: 64px !important;
+}
+
+@media (max-width: 768px) {
+  .running-anchor {
+    padding: 0 10px;
+  }
+  .running-actions {
+    padding: 0 8px;
+  }
+  .running-item {
+    font-size: 0.76rem;
+  }
+  .running-bottom-bar {
+    height: 38px;
+  }
+}
+
+

@@ -5,6 +5,7 @@
 
 document.addEventListener('DOMContentLoaded', () => {
   initSiteEntryAnimation();
+  initRunningBottomBar();
   initLiveGithubStats();
   initProjectsList();
   initHardwareBench();
@@ -520,4 +521,22 @@ function initSiteEntryAnimation() {
   // Start sequence immediately
   runSequence();
 }
+
+/* ===================================================================
+   10. Running Bottom Bar Experience Ticker Toggle
+   =================================================================== */
+function initRunningBottomBar() {
+  const bar = document.getElementById('running-bottom-bar');
+  const toggleBtn = document.getElementById('running-toggle-btn');
+  if (!bar || !toggleBtn) return;
+
+  toggleBtn.addEventListener('click', (e) => {
+    e.stopPropagation();
+    bar.classList.toggle('minimized');
+    const isMin = bar.classList.contains('minimized');
+    toggleBtn.setAttribute('title', isMin ? 'Expand Banner' : 'Minimize Banner');
+    toggleBtn.setAttribute('aria-label', isMin ? 'Expand Banner' : 'Minimize Banner');
+  });
+}
+
 
