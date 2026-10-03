@@ -16,7 +16,7 @@
 
   <!-- Favicon -->
   <link rel="icon" type="image/svg+xml" href="assets/logo.svg">
-  <link rel="stylesheet" href="css/styles.css?v=3d-hero">
+  <link rel="stylesheet" href="css/styles.css?v=3d-layout">
 </head>
 <body>
 
@@ -79,12 +79,12 @@
 
       <nav>
         <ul class="nav-links">
-          <li><a href="#overview" class="nav-link">About</a></li>
-          <li><a href="#specializations" class="nav-link">Specializations</a></li>
-          <li><a href="#app-design" class="nav-link">3D Showcase</a></li>
-          <li><a href="#work" class="nav-link">Selected Work</a></li>
-          <li><a href="#stack" class="nav-link">Arsenal</a></li>
+          <li><a href="#about" class="nav-link">About</a></li>
+          <li><a href="#app-design" class="nav-link">App Design</a></li>
+          <li><a href="#web-design" class="nav-link">Web Design</a></li>
           <li><a href="#hardware" class="nav-link">Hardware</a></li>
+          <li><a href="#brands" class="nav-link">Arsenal</a></li>
+          <li><a href="#work" class="nav-link">Work</a></li>
           <li><a href="#credentials" class="nav-link">Credentials</a></li>
           <li><a href="#contact" class="nav-link">Contact</a></li>
         </ul>
@@ -129,7 +129,7 @@
         </div>
       </div>
 
-      <a href="#overview" class="introduction__arrow" aria-label="Scroll down to overview">
+      <a href="#about" class="introduction__arrow" aria-label="Scroll down to about section">
         <span>SCROLL</span>
         <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
           <path d="M7 10l5 5 5-5"/>
@@ -138,56 +138,35 @@
       </a>
     </section>
 
-    <!-- ==================== OVERVIEW & EDITORIAL PROFILE ==================== -->
-    <section class="hero hero-overview" id="overview">
-      <div class="container hero-grid">
-        <div class="hero-content">
-          <div class="status-badge">
-            <span class="live-dot-green"></span>
-            Software Engineering Intern @ Dept. of Fisheries & Aquatic Resources (DFAR)
-          </div>
-
-          <div>
-            <div class="section-tag" style="margin-bottom: 8px;">Executive Profile</div>
-            <h2 class="hero-title" style="font-size: clamp(2rem, 3.2vw, 2.7rem);">
-              Software Engineer &amp; Systems Builder
+    <!-- ==================== SECTION: ABOUT (THEVINUVINAN STYLE) ==================== -->
+    <section class="about" id="about">
+      <div class="about__wrapper">
+        <div class="about__content">
+          <div class="about__content-blurb blurb blurb--framed reveal">
+            <span class="blurb__tag">About &bull; Core Disciplines</span>
+            <h2 class="blurb__heading">
+              DISTRIBUTED SYSTEMS.<br>
+              MICROSERVICES.<br>
+              FLUTTER &amp; MOBILE.<br>
+              IOT &amp; HARDWARE.
             </h2>
-            <div class="hero-subheadline">
-              Specializing in <span class="gradient-text">Distributed Systems</span>, <span class="gradient-text">React</span>, <span class="gradient-text">Flutter</span> &amp; <span class="gradient-text">IoT</span>.
+            <p class="blurb__copy">
+              <strong>"Architecting resilient distributed systems and intelligent physical computing from Sri Lanka."</strong>
+            </p>
+            <p class="blurb__copy" style="margin-top: 14px;">
+              Undergraduate reading for a <strong>BSc (Hons) in Computer Science with Applied Artificial Intelligence</strong> at the National Institute of Business Management (NIBM). Experienced in architecting enterprise multi-tier Spring Boot microservices, building cross-platform applications with Flutter, and designing embedded C++ systems with <strong>38+ public repositories</strong> on GitHub.
+            </p>
+            <div style="margin-top: 16px;">
+              <span class="status-badge" style="display: inline-flex;">
+                <span class="live-dot-green"></span>
+                Software Engineering Intern @ Dept. of Fisheries &amp; Aquatic Resources (DFAR)
+              </span>
             </div>
-          </div>
-
-          <p class="hero-bio">
-            Undergraduate reading for a <strong>BSc (Hons) in Computer Science with Applied Artificial Intelligence</strong> at the National Institute of Business Management (NIBM). Experienced in architecting enterprise multi-tier Spring Boot microservices, building cross-platform applications with Flutter, and designing embedded C++ systems with <strong>38+ public repositories</strong> on GitHub.
-          </p>
-
-          <div class="hero-badges-cluster">
-            <span class="meta-badge">BSc (Hons) AI & CS (NIBM)</span>
-            <span class="meta-badge">Spring Boot 3</span>
-            <span class="meta-badge">React 18</span>
-            <span class="meta-badge">Flutter & Dart</span>
-            <span class="meta-badge">Docker & Compose</span>
-            <span class="meta-badge">38+ Repositories</span>
-          </div>
-
-          <div class="hero-cta-group">
-            <a href="assets/Mesanda_Sethumika_Resume.pdf" download="Mesanda_Sethumika_Resume.pdf" class="btn btn-primary">
-              Download CV (PDF) ↗
-            </a>
-            <a href="#work" class="btn btn-secondary">
-              View Selected Work ↓
-            </a>
-            <a href="https://www.linkedin.com/in/mesanda-sethumika/" target="_blank" rel="noopener noreferrer" class="btn btn-blue">
-              LinkedIn Profile ↗
-            </a>
-            <a href="https://wa.me/94704606591" target="_blank" rel="noopener noreferrer" class="btn btn-whatsapp">
-              WhatsApp Direct 💬
-            </a>
+            <a class="transform-link" href="#work">Explore Selected Work</a>
           </div>
         </div>
 
-        <!-- Professional Editorial Portrait Showcase -->
-        <div class="portrait-stage">
+        <div class="about__visual-wrap reveal">
           <div class="portrait-frame">
             <img src="assets/logo.jpg" alt="Mesanda Sethumika Monogram" class="portrait-logo-floating">
             
@@ -198,7 +177,7 @@
 
             <div class="portrait-info-tag">
               <div class="portrait-lead-name">Mesanda Sethumika</div>
-              <div class="portrait-lead-role">Software Engineer • NIBM Undergrad</div>
+              <div class="portrait-lead-role">Software Engineer &bull; NIBM Undergrad</div>
               <div class="portrait-lead-loc">
                 <span>📍</span>
                 <span>Panadura / Colombo, Sri Lanka (UTC+05:30)</span>
@@ -209,7 +188,7 @@
       </div>
 
       <!-- Core Metrics Strip -->
-      <div class="container">
+      <div class="container" style="margin-top: 40px;">
         <div class="metrics-strip reveal">
           <div class="metrics-grid">
             <div class="metric-item">
@@ -222,7 +201,7 @@
             </div>
             <div class="metric-item">
               <span class="metric-number">BSc (Hons)</span>
-              <span class="metric-label">Computer Science & AI (NIBM)</span>
+              <span class="metric-label">Computer Science &amp; AI (NIBM)</span>
             </div>
             <div class="metric-item">
               <span class="metric-number">100%</span>
@@ -233,58 +212,16 @@
       </div>
     </section>
 
-    <!-- ==================== SPECIALIZATIONS ==================== -->
-    <section class="section" id="specializations">
-      <div class="container">
-        <div class="section-head reveal section-beam-sweep">
-          <span class="section-tag">Core Disciplines</span>
-          <h2 class="section-title">Engineering Specializations</h2>
-          <p class="section-desc">
-            Combining rigorous software architecture, intuitive user experiences, and physical computing.
-          </p>
-        </div>
-
-        <div class="specializations-grid">
-          <div class="spec-card spec-deck-1">
-            <div class="spec-icon-box">🏗️</div>
-            <h3 class="spec-title">Distributed Microservices</h3>
-            <p class="spec-desc">
-              Architecting modular, fault-tolerant backend ecosystems using Java 17 and Spring Boot 3 with independent schema isolation, containerization via Docker, and RESTful service mesh design.
-            </p>
-          </div>
-
-          <div class="spec-card spec-deck-2">
-            <div class="spec-icon-box">📱</div>
-            <h3 class="spec-title">Cross-Platform Mobile Apps</h3>
-            <p class="spec-desc">
-              Building responsive, fluid mobile applications using Flutter and Dart with Riverpod state management and offline-first Hive NoSQL storage, implementing mathematical algorithms like SuperMemo SM-2.
-            </p>
-          </div>
-
-          <div class="spec-card spec-deck-3">
-            <div class="spec-icon-box">⚡</div>
-            <h3 class="spec-title">IoT & Physical Computing</h3>
-            <p class="spec-desc">
-              Programming microcontrollers (ESP8266, Arduino) in asynchronous C++, interfacing optoisolated high-voltage relay modules, sensor arrays, and serving local web control portals without cloud reliance.
-            </p>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- ==================== 3D DESIGN SHOWCASE (INSPIRED BY THEVINUVINAN) ==================== -->
+    <!-- ==================== 3D DESIGN SHOWCASE (THEVINUVINAN STYLE) ==================== -->
     <div id="showcase-hub">
       <!-- SECTION 01: App Design (lingua-flip) -->
-      <section class="section showcase-section showcase-app-design" id="app-design">
-        <div class="container showcase-container">
-          <div class="showcase-content blurb reveal">
-            <div class="showcase-eyebrow">
-              <span class="live-dot-purple"></span>
-              FEATURED APP DESIGN &bull; MOBILE UX
-            </div>
-            <h2 class="showcase-heading">lingua-flip</h2>
-            <h3 class="showcase-subheading">Cognitive Spaced Repetition Mobile Flashcards</h3>
-            <p class="showcase-copy">
+      <section class="app-design" id="app-design">
+        <div class="app-design__wrapper">
+          <div class="app-design__content blurb reveal">
+            <span class="blurb__tag">Featured App Design &bull; Mobile UX</span>
+            <h2 class="blurb__heading">lingua-flip</h2>
+            <h3>Cognitive Spaced Repetition Mobile Flashcards</h3>
+            <p class="blurb__copy blurb__copy--tight">
               A high-performance cross-platform mobile flashcard app built with <strong>Flutter</strong> and <strong>Dart</strong>. Engineered around the <strong>SuperMemo SM-2</strong> cognitive memory decay algorithm to dynamically schedule optimal review intervals with instant offline <strong>Hive NoSQL</strong> persistence and clean <strong>Riverpod</strong> state management.
             </p>
             
@@ -299,9 +236,8 @@
               <button class="btn btn-primary" onclick="openProjectModal('lingua-flip')">
                 View Architecture Spec ↗
               </button>
-              <a href="https://github.com/mesanda456" target="_blank" rel="noopener noreferrer" class="showcase-transform-link">
-                <span>Check it out</span>
-                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+              <a href="#work" onclick="openProjectModal('lingua-flip'); return false;" class="transform-link">
+                Check it out
               </a>
               <button class="btn-orbit-toggle" data-target="app-3d-card" title="Toggle 3D auto-orbit animation">
                 <span class="orbit-icon">✦</span>
@@ -311,7 +247,7 @@
           </div>
 
           <!-- 3D Interactive Visual Stage: App Design (Phones floating in 3D perspective) -->
-          <div class="showcase-visual-wrapper showcase-visual-right" id="app-stage-wrapper">
+          <div class="app-design__visual-wrap showcase-visual-right reveal" id="app-stage-wrapper">
             <div class="showcase-stage" id="app-stage">
               <div class="stage-ambient-glow"></div>
               <div class="stage-grid-plane"></div>
@@ -363,10 +299,10 @@
       </section>
 
       <!-- SECTION 02: Web & Cloud Systems Design (MediConnect) -->
-      <section class="section showcase-section showcase-web-design" id="web-design">
-        <div class="container showcase-container showcase-reverse">
+      <section class="web-design" id="web-design">
+        <div class="web-design__wrapper">
           <!-- 3D Interactive Visual Stage: Web Design (Laptop floating in 3D perspective) -->
-          <div class="showcase-visual-wrapper showcase-visual-left" id="web-stage-wrapper">
+          <div class="web-design__visual-wrap showcase-visual-left reveal" id="web-stage-wrapper">
             <div class="showcase-stage" id="web-stage">
               <div class="stage-ambient-glow stage-glow-cyan"></div>
               <div class="stage-grid-plane"></div>
@@ -416,14 +352,11 @@
           </div>
 
           <!-- Web Design Content Blurb -->
-          <div class="showcase-content blurb reveal">
-            <div class="showcase-eyebrow">
-              <span class="live-dot-green"></span>
-              FEATURED WEB &bull; DISTRIBUTED PLATFORM
-            </div>
-            <h2 class="showcase-heading">MediConnect</h2>
-            <h3 class="showcase-subheading">Enterprise Healthcare Microservices Architecture</h3>
-            <p class="showcase-copy">
+          <div class="web-design__content blurb reveal">
+            <span class="blurb__tag">Featured Web &bull; Distributed Platform</span>
+            <h2 class="blurb__heading">MediConnect</h2>
+            <h3>Enterprise Healthcare Microservices Architecture</h3>
+            <p class="blurb__copy blurb__copy--tight">
               A mission-critical clinical hospital ecosystem engineered to isolate core medical domains into <strong>5 decoupled Spring Boot 3 microservices</strong>. Features an intelligent clinical triage engine powered by <strong>Google Gemini AI</strong>, live telemetry dashboards in <strong>React 18</strong>, dedicated MySQL schemas, and full <strong>Docker</strong> containerization.
             </p>
             
@@ -438,9 +371,8 @@
               <button class="btn btn-primary" onclick="openProjectModal('mediconnect')">
                 View Microservices Topology ↗
               </button>
-              <a href="https://github.com/mesanda456/hospital-frontend-main" target="_blank" rel="noopener noreferrer" class="showcase-transform-link">
-                <span>Check it out</span>
-                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+              <a href="https://github.com/mesanda456/hospital-frontend-main" target="_blank" rel="noopener noreferrer" class="transform-link">
+                Check it out
               </a>
               <button class="btn-orbit-toggle" data-target="web-3d-card" title="Toggle 3D auto-orbit animation">
                 <span class="orbit-icon">✦</span>
@@ -450,120 +382,19 @@
           </div>
         </div>
       </section>
-    </div>
 
-    <!-- ==================== SELECTED WORK ==================== -->
-    <section class="section" id="work">
-      <div class="container">
-        <div class="section-head reveal section-beam-sweep">
-          <span class="section-tag">Case Studies</span>
-          <h2 class="section-title">Selected Work</h2>
-          <p class="section-desc">
-            Curated production codebases and academic engineering builds. Each project includes full source code access and 1-Click LinkedIn credential verification.
-          </p>
-        </div>
-
-        <div class="filter-row reveal delay-1">
-          <button class="filter-chip active" data-filter="all">All Projects</button>
-          <button class="filter-chip" data-filter="microservices">Microservices</button>
-          <button class="filter-chip" data-filter="fullstack">Full-Stack</button>
-          <button class="filter-chip" data-filter="mobile">Mobile Apps</button>
-          <button class="filter-chip" data-filter="iot">Embedded IoT</button>
-          <button class="filter-chip" data-filter="ai">AI & Vision</button>
-        </div>
-
-        <div class="projects-grid" id="projects-grid">
-          <!-- Rendered dynamically by js/projects.js & js/main.js with staggered animations -->
-        </div>
-      </div>
-    </section>
-
-    <!-- ==================== TECHNICAL ARSENAL ==================== -->
-    <section class="section" id="stack">
-      <div class="container">
-        <div class="section-head reveal section-beam-sweep">
-          <span class="section-tag">Engineering Forge</span>
-          <h2 class="section-title">Technical Arsenal</h2>
-          <p class="section-desc">
-            Core technologies and tools deployed across real-world systems and academic research.
-          </p>
-        </div>
-
-        <div class="stack-grid">
-          <div class="stack-box circuit-box delay-1">
-            <h3 class="stack-title">Languages & Core</h3>
-            <div class="stack-list">
-              <span class="stack-item">Java 17</span>
-              <span class="stack-item">TypeScript</span>
-              <span class="stack-item">JavaScript (ES6+)</span>
-              <span class="stack-item">Python</span>
-              <span class="stack-item">Dart</span>
-              <span class="stack-item">C / C++</span>
-              <span class="stack-item">SQL</span>
-            </div>
-          </div>
-
-          <div class="stack-box circuit-box delay-2">
-            <h3 class="stack-title">Backend & Microservices</h3>
-            <div class="stack-list">
-              <span class="stack-item">Spring Boot 3</span>
-              <span class="stack-item">Spring Data JPA</span>
-              <span class="stack-item">Node.js</span>
-              <span class="stack-item">Express.js</span>
-              <span class="stack-item">RESTful APIs</span>
-              <span class="stack-item">Microservices</span>
-              <span class="stack-item">JWT Authentication</span>
-            </div>
-          </div>
-
-          <div class="stack-box circuit-box delay-3">
-            <h3 class="stack-title">Frontend & Mobile</h3>
-            <div class="stack-list">
-              <span class="stack-item">React 18</span>
-              <span class="stack-item">Flutter</span>
-              <span class="stack-item">Riverpod</span>
-              <span class="stack-item">HTML5 / CSS3</span>
-              <span class="stack-item">Vite</span>
-              <span class="stack-item">Android SDK</span>
-              <span class="stack-item">Hive NoSQL</span>
-            </div>
-          </div>
-
-          <div class="stack-box circuit-box delay-4">
-            <h3 class="stack-title">Databases & Infrastructure</h3>
-            <div class="stack-list">
-              <span class="stack-item">MySQL</span>
-              <span class="stack-item">MongoDB Atlas</span>
-              <span class="stack-item">Oracle Database</span>
-              <span class="stack-item">SQLite</span>
-              <span class="stack-item">Docker</span>
-              <span class="stack-item">Docker Compose</span>
-              <span class="stack-item">Git & GitHub</span>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- ==================== HARDWARE BENCH ==================== -->
-    <section class="section" id="hardware">
-      <div class="container">
-        <div class="section-head reveal section-beam-sweep">
-          <span class="section-tag">Physical Computing</span>
-          <h2 class="section-title">Hardware Case Study: ESP8266 Controller</h2>
-          <p class="section-desc">
-            Embedded firmware running an asynchronous C++ web server to control isolated multi-channel AC relays over local WiFi.
-          </p>
-        </div>
-
-        <div class="bench-card hardware-aperture">
-          <div class="bench-info">
-            <h3>ESP8266 NodeMCU Firmware Test Bench</h3>
-            <p>
-              Originally designed for festive Vesak lanterns, this project flashes an asynchronous web server directly to microcontroller flash memory. Users on the local network can switch optoisolated relays without external cloud servers or internet connections.
+      <!-- SECTION 03: Hardware & Physical Computing (ESP8266 IoT Server) -->
+      <section class="app-design hardware-design" id="hardware">
+        <div class="app-design__wrapper">
+          <div class="app-design__content blurb reveal">
+            <span class="blurb__tag">Physical Computing &amp; C++</span>
+            <h2 class="blurb__heading">Smart Lighting Controller</h2>
+            <h3>ESP8266 Asynchronous IoT Server</h3>
+            <p class="blurb__copy blurb__copy--tight">
+              Embedded firmware running an asynchronous C++ web server to control isolated multi-channel 230V AC relays over local WiFi with zero cloud dependency.
             </p>
 
-            <div class="bench-lamps">
+            <div class="bench-lamps" style="margin: 20px 0;">
               <div class="bench-lamp" id="lamp-1">
                 <div class="lamp-indicator"></div>
                 <div class="lamp-label">GPIO 12 (Octagon)</div>
@@ -578,43 +409,200 @@
               </div>
             </div>
 
-            <div class="bench-controls">
+            <div class="bench-controls" style="margin-bottom: 24px;">
               <button class="btn btn-secondary btn-sm" id="btn-gpio-12">Toggle GPIO 12</button>
               <button class="btn btn-secondary btn-sm" id="btn-gpio-13">Toggle GPIO 13</button>
               <button class="btn btn-secondary btn-sm" id="btn-gpio-14">Toggle GPIO 14</button>
               <button class="btn btn-secondary btn-sm" id="btn-all-toggle">Toggle All</button>
             </div>
+
+            <a class="transform-link" href="https://github.com/mesanda456/using-ESP8266-and-relay-module-5W-bulb-patterns" target="_blank" rel="noopener noreferrer">
+              View Firmware on GitHub
+            </a>
           </div>
 
-          <div>
-            <div style="font-family: var(--font-mono); font-size: 0.74rem; color: var(--text-tertiary); margin-bottom: 6px;">
-              Serial Telemetry Console (Baud 115200)
+          <div class="app-design__visual-wrap reveal">
+            <div class="bench-card hardware-aperture" style="margin: 0; width: 100%;">
+              <div style="font-family: var(--font-mono); font-size: 0.74rem; color: var(--text-tertiary); margin-bottom: 8px; display: flex; align-items: center; justify-content: space-between;">
+                <span>Serial Telemetry Console (Baud 115200)</span>
+                <span class="live-dot-green"></span>
+              </div>
+              <div class="bench-terminal" id="bench-log">
+                <div>[Firmware v1.2] Booted successfully. Heap: 42120 bytes free.</div>
+                <div>[WiFi] Connected to Home_Mesh. IP: 192.168.1.142</div>
+                <div>[Server] Async HTTP Server listening on port 80.</div>
+              </div>
             </div>
-            <div class="bench-terminal" id="bench-log">
-              <div>[Firmware v1.2] Booted successfully. Heap: 42120 bytes free.</div>
-              <div>[WiFi] Connected to Home_Mesh. IP: 192.168.1.142</div>
-              <div>[Server] Async HTTP Server listening on port 80.</div>
-            </div>
-            <div style="margin-top: 14px;">
-              <a href="https://github.com/mesanda456/using-ESP8266-and-relay-module-5W-bulb-patterns" target="_blank" rel="noopener noreferrer" class="btn btn-secondary btn-sm">
-                View Firmware on GitHub ↗
-              </a>
-            </div>
+          </div>
+        </div>
+      </section>
+    </div>
+
+    <!-- ==================== SECTION: BRANDS & TECH ARSENAL (THEVINUVINAN STYLE) ==================== -->
+    <section id="brands" class="brands-section">
+      <h2 class="title">Technical Arsenal &amp; Stack</h2>
+      <p class="title-sub">Technologies, languages, and enterprise frameworks deployed across production architectures and research.</p>
+
+      <div class="brands-marquee-wrap">
+        <div class="brands-marquee-track">
+          <!-- Item 1 -->
+          <div class="tech-badge-item">
+            <span class="tech-badge-icon">☕</span>
+            <div><div class="tech-badge-name">Java 17</div><div class="tech-badge-desc">Enterprise Core</div></div>
+          </div>
+          <!-- Item 2 -->
+          <div class="tech-badge-item">
+            <span class="tech-badge-icon">🍃</span>
+            <div><div class="tech-badge-name">Spring Boot 3</div><div class="tech-badge-desc">Microservices &amp; JPA</div></div>
+          </div>
+          <!-- Item 3 -->
+          <div class="tech-badge-item">
+            <span class="tech-badge-icon">⚛️</span>
+            <div><div class="tech-badge-name">React 18</div><div class="tech-badge-desc">Reactive UI &amp; Web</div></div>
+          </div>
+          <!-- Item 4 -->
+          <div class="tech-badge-item">
+            <span class="tech-badge-icon">📱</span>
+            <div><div class="tech-badge-name">Flutter &amp; Dart</div><div class="tech-badge-desc">Cross-Platform Apps</div></div>
+          </div>
+          <!-- Item 5 -->
+          <div class="tech-badge-item">
+            <span class="tech-badge-icon">🐳</span>
+            <div><div class="tech-badge-name">Docker</div><div class="tech-badge-desc">Compose &amp; Mesh</div></div>
+          </div>
+          <!-- Item 6 -->
+          <div class="tech-badge-item">
+            <span class="tech-badge-icon">🤖</span>
+            <div><div class="tech-badge-name">Google Gemini AI</div><div class="tech-badge-desc">Clinical Triage &amp; LLMs</div></div>
+          </div>
+          <!-- Item 7 -->
+          <div class="tech-badge-item">
+            <span class="tech-badge-icon">⚡</span>
+            <div><div class="tech-badge-name">ESP8266 / C++</div><div class="tech-badge-desc">Embedded Firmware</div></div>
+          </div>
+          <!-- Item 8 -->
+          <div class="tech-badge-item">
+            <span class="tech-badge-icon">🐬</span>
+            <div><div class="tech-badge-name">MySQL</div><div class="tech-badge-desc">Relational DB</div></div>
+          </div>
+          <!-- Item 9 -->
+          <div class="tech-badge-item">
+            <span class="tech-badge-icon">🍃</span>
+            <div><div class="tech-badge-name">MongoDB Atlas</div><div class="tech-badge-desc">Document Storage</div></div>
+          </div>
+          <!-- Item 10 -->
+          <div class="tech-badge-item">
+            <span class="tech-badge-icon">📦</span>
+            <div><div class="tech-badge-name">Hive NoSQL</div><div class="tech-badge-desc">&lt;1.4ms Local Cache</div></div>
+          </div>
+          <!-- Item 11 -->
+          <div class="tech-badge-item">
+            <span class="tech-badge-icon">🐍</span>
+            <div><div class="tech-badge-name">Python</div><div class="tech-badge-desc">CV &amp; Deep Learning</div></div>
+          </div>
+          <!-- Item 12 -->
+          <div class="tech-badge-item">
+            <span class="tech-badge-icon">👁️</span>
+            <div><div class="tech-badge-name">OpenCV</div><div class="tech-badge-desc">Image Processing</div></div>
+          </div>
+          <!-- Item 13 -->
+          <div class="tech-badge-item">
+            <span class="tech-badge-icon">🏛️</span>
+            <div><div class="tech-badge-name">Oracle DB</div><div class="tech-badge-desc">Enterprise SQL</div></div>
+          </div>
+          <!-- Item 14 -->
+          <div class="tech-badge-item">
+            <span class="tech-badge-icon">🐙</span>
+            <div><div class="tech-badge-name">Git &amp; GitHub</div><div class="tech-badge-desc">38+ Repositories</div></div>
+          </div>
+
+          <!-- Duplicate Set for Seamless Infinite Marquee -->
+          <div class="tech-badge-item" aria-hidden="true">
+            <span class="tech-badge-icon">☕</span>
+            <div><div class="tech-badge-name">Java 17</div><div class="tech-badge-desc">Enterprise Core</div></div>
+          </div>
+          <div class="tech-badge-item" aria-hidden="true">
+            <span class="tech-badge-icon">🍃</span>
+            <div><div class="tech-badge-name">Spring Boot 3</div><div class="tech-badge-desc">Microservices &amp; JPA</div></div>
+          </div>
+          <div class="tech-badge-item" aria-hidden="true">
+            <span class="tech-badge-icon">⚛️</span>
+            <div><div class="tech-badge-name">React 18</div><div class="tech-badge-desc">Reactive UI &amp; Web</div></div>
+          </div>
+          <div class="tech-badge-item" aria-hidden="true">
+            <span class="tech-badge-icon">📱</span>
+            <div><div class="tech-badge-name">Flutter &amp; Dart</div><div class="tech-badge-desc">Cross-Platform Apps</div></div>
+          </div>
+          <div class="tech-badge-item" aria-hidden="true">
+            <span class="tech-badge-icon">🐳</span>
+            <div><div class="tech-badge-name">Docker</div><div class="tech-badge-desc">Compose &amp; Mesh</div></div>
+          </div>
+          <div class="tech-badge-item" aria-hidden="true">
+            <span class="tech-badge-icon">🤖</span>
+            <div><div class="tech-badge-name">Google Gemini AI</div><div class="tech-badge-desc">Clinical Triage &amp; LLMs</div></div>
+          </div>
+          <div class="tech-badge-item" aria-hidden="true">
+            <span class="tech-badge-icon">⚡</span>
+            <div><div class="tech-badge-name">ESP8266 / C++</div><div class="tech-badge-desc">Embedded Firmware</div></div>
+          </div>
+          <div class="tech-badge-item" aria-hidden="true">
+            <span class="tech-badge-icon">🐬</span>
+            <div><div class="tech-badge-name">MySQL</div><div class="tech-badge-desc">Relational DB</div></div>
+          </div>
+          <div class="tech-badge-item" aria-hidden="true">
+            <span class="tech-badge-icon">🍃</span>
+            <div><div class="tech-badge-name">MongoDB Atlas</div><div class="tech-badge-desc">Document Storage</div></div>
+          </div>
+          <div class="tech-badge-item" aria-hidden="true">
+            <span class="tech-badge-icon">📦</span>
+            <div><div class="tech-badge-name">Hive NoSQL</div><div class="tech-badge-desc">&lt;1.4ms Local Cache</div></div>
+          </div>
+          <div class="tech-badge-item" aria-hidden="true">
+            <span class="tech-badge-icon">🐍</span>
+            <div><div class="tech-badge-name">Python</div><div class="tech-badge-desc">CV &amp; Deep Learning</div></div>
+          </div>
+          <div class="tech-badge-item" aria-hidden="true">
+            <span class="tech-badge-icon">👁️</span>
+            <div><div class="tech-badge-name">OpenCV</div><div class="tech-badge-desc">Image Processing</div></div>
+          </div>
+          <div class="tech-badge-item" aria-hidden="true">
+            <span class="tech-badge-icon">🏛️</span>
+            <div><div class="tech-badge-name">Oracle DB</div><div class="tech-badge-desc">Enterprise SQL</div></div>
+          </div>
+          <div class="tech-badge-item" aria-hidden="true">
+            <span class="tech-badge-icon">🐙</span>
+            <div><div class="tech-badge-name">Git &amp; GitHub</div><div class="tech-badge-desc">38+ Repositories</div></div>
           </div>
         </div>
       </div>
     </section>
 
-    <!-- ==================== CREDENTIALS & REFERENCES ==================== -->
-    <section class="section" id="credentials">
-      <div class="container">
-        <div class="section-head reveal section-beam-sweep">
-          <span class="section-tag">Background</span>
-          <h2 class="section-title">Education & Credentials</h2>
-          <p class="section-desc">
-            Formal computer science foundations, industry certifications, and academic references.
-          </p>
+    <!-- ==================== SECTION: WORK / LATEST PROJECTS (THEVINUVINAN STYLE) ==================== -->
+    <section id="work" class="work section">
+      <div class="work__wrapper">
+        <h2 class="title">Latest Projects</h2>
+        <p class="title-sub">Curated production codebases and academic engineering builds with 1-Click LinkedIn verification.</p>
+
+        <div class="filter-row reveal delay-1">
+          <button class="filter-chip active" data-filter="all">All Projects</button>
+          <button class="filter-chip" data-filter="microservices">Microservices</button>
+          <button class="filter-chip" data-filter="fullstack">Full-Stack</button>
+          <button class="filter-chip" data-filter="mobile">Mobile Apps</button>
+          <button class="filter-chip" data-filter="iot">Embedded IoT</button>
+          <button class="filter-chip" data-filter="ai">AI &amp; Vision</button>
         </div>
+
+        <div class="projects-grid" id="projects-grid">
+          <!-- Rendered dynamically by js/projects.js & js/main.js with staggered animations -->
+        </div>
+      </div>
+    </section>
+
+    <!-- ==================== CREDENTIALS & REFERENCES ==================== -->
+    <section class="section credentials-section" id="credentials">
+      <div class="container">
+        <h2 class="title">Experience &amp; Credentials</h2>
+        <p class="title-sub">Formal computer science foundations, industry certifications, and academic references.</p>
 
         <div class="timeline-list">
           <!-- Active Current Role -->
@@ -714,80 +702,75 @@
       </div>
     </section>
 
-    <!-- ==================== CONTACT ==================== -->
-    <section class="section" id="contact">
+    <!-- ==================== CONTACT (THEVINUVINAN STYLE) ==================== -->
+    <section class="section contact-section" id="contact">
       <div class="container">
-        <div class="section-head reveal section-beam-sweep">
-          <span class="section-tag">Direct Line</span>
-          <h2 class="section-title">Get in Touch</h2>
-          <p class="section-desc">
-            Currently open to software engineering internships, junior developer roles, and technical discussions.
-          </p>
+        <h2 class="title">Get In Touch</h2>
+        <p class="title-sub">Currently open to software engineering internships, junior developer roles, and technical discussions.</p>
+      </div>
+
+      <div class="contact__wrapper">
+        <div class="contact-card contact-converge-left contact__visual">
+          <h3 style="font-size: 1.25rem; font-weight: 700; margin-bottom: 20px;">Direct Communication</h3>
+          
+          <div class="channel-row">
+            <span class="channel-label">Email</span>
+            <div style="display: flex; align-items: center; gap: 10px;">
+              <span class="channel-val">mesandasethumika@gmail.com</span>
+              <button class="btn btn-secondary btn-sm" id="copy-email-btn">Copy</button>
+            </div>
+          </div>
+
+          <div class="channel-row">
+            <span class="channel-label">LinkedIn</span>
+            <a href="https://www.linkedin.com/in/mesanda-sethumika/" target="_blank" rel="noopener noreferrer" class="btn btn-blue btn-sm">
+              /in/mesanda-sethumika ↗
+            </a>
+          </div>
+
+          <div class="channel-row">
+            <span class="channel-label">WhatsApp</span>
+            <a href="https://wa.me/94704606591" target="_blank" rel="noopener noreferrer" class="btn btn-whatsapp btn-sm">
+              +94 70 460 6591 ↗
+            </a>
+          </div>
+
+          <div class="channel-row">
+            <span class="channel-label">GitHub</span>
+            <a href="https://github.com/mesanda456" target="_blank" rel="noopener noreferrer" class="btn btn-secondary btn-sm">
+              @mesanda456 ↗
+            </a>
+          </div>
+
+          <div class="channel-row">
+            <span class="channel-label">Base</span>
+            <span class="channel-val">Panadura / Colombo, Sri Lanka 🇱🇰</span>
+          </div>
         </div>
 
-        <div class="contact-grid">
-          <div class="contact-card contact-converge-left">
-            <h3 style="font-size: 1.25rem; font-weight: 700; margin-bottom: 20px;">Direct Communication</h3>
-            
-            <div class="channel-row">
-              <span class="channel-label">Email</span>
-              <div style="display: flex; align-items: center; gap: 10px;">
-                <span class="channel-val">mesandasethumika@gmail.com</span>
-                <button class="btn btn-secondary btn-sm" id="copy-email-btn">Copy</button>
-              </div>
+        <div class="contact-card contact-converge-right contact__form-wrap">
+          <h3 style="font-size: 1.25rem; font-weight: 700; margin-bottom: 20px;">Send a Direct Message</h3>
+          <form id="contact-form">
+            <div class="form-group">
+              <label for="contact-name" class="form-label">Name</label>
+              <input type="text" id="contact-name" class="form-input" placeholder="Your Name or Organization" required>
             </div>
 
-            <div class="channel-row">
-              <span class="channel-label">LinkedIn</span>
-              <a href="https://www.linkedin.com/in/mesanda-sethumika/" target="_blank" rel="noopener noreferrer" class="btn btn-blue btn-sm">
-                /in/mesanda-sethumika ↗
-              </a>
+            <div class="form-group">
+              <label for="contact-email" class="form-label">Email</label>
+              <input type="email" id="contact-email" class="form-input" placeholder="name@company.com" required>
             </div>
 
-            <div class="channel-row">
-              <span class="channel-label">WhatsApp</span>
-              <a href="https://wa.me/94704606591" target="_blank" rel="noopener noreferrer" class="btn btn-whatsapp btn-sm">
-                +94 70 460 6591 ↗
-              </a>
+            <div class="form-group">
+              <label for="contact-msg" class="form-label">Message</label>
+              <textarea id="contact-msg" class="form-textarea" placeholder="Hi Mesanda, I would like to discuss..." required></textarea>
             </div>
 
-            <div class="channel-row">
-              <span class="channel-label">GitHub</span>
-              <a href="https://github.com/mesanda456" target="_blank" rel="noopener noreferrer" class="btn btn-secondary btn-sm">
-                @mesanda456 ↗
-              </a>
+            <div style="display: flex; gap: 12px; margin-top: 14px;">
+              <button type="submit" class="btn btn-primary" style="flex: 1;">Send Email</button>
+              <button type="button" class="btn btn-whatsapp" id="btn-send-whatsapp">Chat via WhatsApp</button>
             </div>
-
-            <div class="channel-row">
-              <span class="channel-label">Base</span>
-              <span class="channel-val">Panadura / Colombo, Sri Lanka 🇱🇰</span>
-            </div>
-          </div>
-
-          <div class="contact-card contact-converge-right">
-            <h3 style="font-size: 1.25rem; font-weight: 700; margin-bottom: 20px;">Send a Direct Message</h3>
-            <form id="contact-form">
-              <div class="form-group">
-                <label for="contact-name" class="form-label">Name</label>
-                <input type="text" id="contact-name" class="form-input" placeholder="Your Name or Organization" required>
-              </div>
-
-              <div class="form-group">
-                <label for="contact-email" class="form-label">Email</label>
-                <input type="email" id="contact-email" class="form-input" placeholder="name@company.com" required>
-              </div>
-
-              <div class="form-group">
-                <label for="contact-msg" class="form-label">Message</label>
-                <textarea id="contact-msg" class="form-textarea" placeholder="Hi Mesanda, I would like to discuss..." required></textarea>
-              </div>
-
-              <div style="display: flex; gap: 12px; margin-top: 14px;">
-                <button type="submit" class="btn btn-primary" style="flex: 1;">Send Email</button>
-                <button type="button" class="btn btn-whatsapp" id="btn-send-whatsapp">Chat via WhatsApp</button>
-              </div>
-            </form>
-          </div>
+          </form>
         </div>
       </div>
     </section>
@@ -923,7 +906,7 @@
     </div>
   </aside>
 
-  <script src="js/projects.js?v=3d-hero"></script>
-  <script src="js/main.js?v=3d-hero"></script>
+  <script src="js/projects.js?v=3d-layout"></script>
+  <script src="js/main.js?v=3d-layout"></script>
 </body>
 </html>
