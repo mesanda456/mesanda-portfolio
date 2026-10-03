@@ -2204,4 +2204,612 @@ body.site-entered .portrait-stage {
   }
 }
 
+/* ===================================================================
+   MESANDA SETHUMIKA — 3D DESIGN SHOWCASE ANIMATIONS
+   Inspired by thevinuvinan.com (App Design & Web Design Showcase)
+   Features: Real 3D Perspective Tilt, Floating Gyro Hologram HUD Chips,
+             Scroll-Triggered Cinematic 3D Reveal, & Dynamic Specular Sheen
+   =================================================================== */
+
+.showcase-section {
+  position: relative;
+  padding: 130px 0;
+  overflow: hidden;
+}
+
+.showcase-app-design {
+  background: radial-gradient(circle at 80% 40%, rgba(99, 102, 241, 0.08) 0%, transparent 60%),
+              radial-gradient(circle at 20% 70%, rgba(168, 85, 247, 0.06) 0%, transparent 55%);
+  border-top: 1px solid rgba(255, 255, 255, 0.05);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.showcase-web-design {
+  background: radial-gradient(circle at 20% 50%, rgba(56, 189, 248, 0.08) 0%, transparent 60%),
+              radial-gradient(circle at 80% 60%, rgba(16, 185, 129, 0.05) 0%, transparent 55%);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.showcase-container {
+  display: grid;
+  grid-template-columns: 1fr 1.08fr;
+  gap: 56px;
+  align-items: center;
+  position: relative;
+  z-index: 2;
+}
+
+.showcase-container.showcase-reverse {
+  grid-template-columns: 1.08fr 1fr;
+}
+
+/* Content Blurb (Inspired by thevinuvinan.com) */
+.showcase-content {
+  position: relative;
+  z-index: 3;
+}
+
+.showcase-eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-family: var(--font-mono);
+  font-size: 0.78rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.14em;
+  color: var(--accent-cyan);
+  background: rgba(56, 189, 248, 0.08);
+  border: 1px solid rgba(56, 189, 248, 0.22);
+  padding: 6px 14px;
+  border-radius: var(--radius-full);
+  margin-bottom: 20px;
+}
+
+.live-dot-purple {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: #a855f7;
+  box-shadow: 0 0 10px #a855f7;
+  animation: pulse-ring 2s infinite;
+}
+
+.showcase-heading {
+  font-size: clamp(2.6rem, 4.4vw, 3.8rem);
+  font-weight: 800;
+  letter-spacing: -0.035em;
+  line-height: 1.08;
+  color: #ffffff;
+  margin-bottom: 10px;
+}
+
+.showcase-subheading {
+  font-size: 1.2rem;
+  font-weight: 600;
+  color: var(--accent-cyan);
+  margin-bottom: 22px;
+  letter-spacing: -0.01em;
+}
+
+.showcase-copy {
+  font-size: 1.02rem;
+  line-height: 1.8;
+  color: var(--text-secondary);
+  margin-bottom: 28px;
+}
+
+.showcase-copy strong {
+  color: #ffffff;
+  font-weight: 600;
+}
+
+/* Highlight Pills Cluster */
+.showcase-pills {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-bottom: 34px;
+}
+
+.showcase-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  background: rgba(255, 255, 255, 0.035);
+  border: 1px solid var(--border-subtle);
+  padding: 6px 14px;
+  border-radius: var(--radius-full);
+  font-size: 0.82rem;
+  font-weight: 500;
+  color: #cbd5e1;
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  transition: all 0.25s ease;
+}
+
+.showcase-pill:hover {
+  background: rgba(255, 255, 255, 0.07);
+  border-color: rgba(255, 255, 255, 0.2);
+  transform: translateY(-2px);
+}
+
+.pill-dot {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+}
+.pill-dot.cyan { background: var(--accent-cyan); box-shadow: 0 0 6px var(--accent-cyan); }
+.pill-dot.purple { background: #a855f7; box-shadow: 0 0 6px #a855f7; }
+.pill-dot.green { background: #10b981; box-shadow: 0 0 6px #10b981; }
+.pill-dot.blue { background: #3b82f6; box-shadow: 0 0 6px #3b82f6; }
+.pill-dot.amber { background: #f59e0b; box-shadow: 0 0 6px #f59e0b; }
+
+/* Action Links with "Check it out" signature hover */
+.showcase-actions {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 16px;
+}
+
+.showcase-transform-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 9px;
+  font-family: var(--font-heading);
+  font-size: 0.95rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: #ff8573;
+  padding: 10px 20px;
+  border-radius: var(--radius-sm);
+  border: 1px solid rgba(255, 133, 115, 0.3);
+  background: rgba(255, 133, 115, 0.08);
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+  text-decoration: none;
+}
+
+.showcase-transform-link svg {
+  transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.showcase-transform-link:hover {
+  color: #ffffff;
+  background: rgba(255, 102, 82, 0.28);
+  border-color: rgba(255, 102, 82, 0.7);
+  box-shadow: 0 6px 20px rgba(255, 102, 82, 0.3);
+  transform: translateX(6px);
+}
+
+.showcase-transform-link:hover svg {
+  transform: translateX(5px);
+}
+
+.btn-orbit-toggle {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-family: var(--font-mono);
+  font-size: 0.78rem;
+  font-weight: 600;
+  color: var(--text-tertiary);
+  background: rgba(255, 255, 255, 0.035);
+  border: 1px solid var(--border-subtle);
+  padding: 10px 16px;
+  border-radius: var(--radius-sm);
+  cursor: pointer;
+  transition: all 0.25s ease;
+}
+
+.btn-orbit-toggle:hover {
+  color: #fff;
+  border-color: var(--border-muted);
+  background: rgba(255, 255, 255, 0.07);
+}
+
+.btn-orbit-toggle.orbit-active {
+  color: #38bdf8;
+  border-color: rgba(56, 189, 248, 0.45);
+  background: rgba(56, 189, 248, 0.12);
+  box-shadow: 0 0 15px rgba(56, 189, 248, 0.2);
+}
+
+.btn-orbit-toggle.orbit-active .orbit-icon {
+  animation: orbitSpin 3s linear infinite;
+}
+
+@keyframes orbitSpin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+/* ===================================================================
+   3D VISUAL STAGE & PERSPECTIVE CAMERA
+   =================================================================== */
+.showcase-visual-wrapper {
+  position: relative;
+  perspective: 1200px;
+  transform-style: preserve-3d;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+}
+
+/* Scroll Entrance Animations (ScrollMagic / IntersectionObserver equivalent) */
+.showcase-visual-right {
+  opacity: 0;
+  transform: perspective(1200px) rotateY(-22deg) rotateX(12deg) scale(0.88) translateX(90px);
+  transition: transform 1.1s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.85s ease;
+  will-change: transform, opacity;
+}
+
+.showcase-visual-right.active {
+  opacity: 1;
+  transform: perspective(1200px) rotateY(0deg) rotateX(0deg) scale(1) translateX(0);
+}
+
+.showcase-visual-left {
+  opacity: 0;
+  transform: perspective(1200px) rotateY(22deg) rotateX(12deg) scale(0.88) translateX(-90px);
+  transition: transform 1.1s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.85s ease;
+  will-change: transform, opacity;
+}
+
+.showcase-visual-left.active {
+  opacity: 1;
+  transform: perspective(1200px) rotateY(0deg) rotateX(0deg) scale(1) translateX(0);
+}
+
+/* 3D Stage Core */
+.showcase-stage {
+  position: relative;
+  width: 100%;
+  max-width: 530px;
+  transform-style: preserve-3d;
+  padding: 24px 16px;
+  cursor: grab;
+  user-select: none;
+}
+
+.showcase-stage:active {
+  cursor: grabbing;
+}
+
+.stage-ambient-glow {
+  position: absolute;
+  width: 380px;
+  height: 380px;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(168, 85, 247, 0.28) 0%, rgba(99, 102, 241, 0.14) 40%, transparent 70%);
+  filter: blur(55px);
+  pointer-events: none;
+  z-index: 0;
+  transition: opacity 0.4s ease;
+}
+
+.stage-ambient-glow.stage-glow-cyan {
+  background: radial-gradient(circle, rgba(56, 189, 248, 0.28) 0%, rgba(16, 185, 129, 0.14) 40%, transparent 70%);
+}
+
+.stage-grid-plane {
+  position: absolute;
+  bottom: 0;
+  left: 10%;
+  right: 10%;
+  height: 180px;
+  background-image: 
+    linear-gradient(to right, rgba(255, 255, 255, 0.05) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(255, 255, 255, 0.05) 1px, transparent 1px);
+  background-size: 24px 24px;
+  transform: perspective(600px) rotateX(72deg);
+  opacity: 0.45;
+  pointer-events: none;
+  z-index: 0;
+  mask-image: radial-gradient(circle at center, black 40%, transparent 80%);
+  -webkit-mask-image: radial-gradient(circle at center, black 40%, transparent 80%);
+}
+
+/* 3D Device Card */
+.stage-3d-card {
+  position: relative;
+  z-index: 2;
+  transform-style: preserve-3d;
+  border-radius: 24px;
+  overflow: visible;
+  box-shadow: 0 30px 70px -15px rgba(0, 0, 0, 0.85),
+              0 0 50px rgba(99, 102, 241, 0.22);
+  transition: box-shadow 0.3s ease;
+  animation: float3DDevice 5.5s ease-in-out infinite alternate;
+  will-change: transform;
+}
+
+.showcase-web-design .stage-3d-card {
+  box-shadow: 0 30px 70px -15px rgba(0, 0, 0, 0.85),
+              0 0 50px rgba(56, 189, 248, 0.22);
+}
+
+.device-mockup-img {
+  width: 100%;
+  height: auto;
+  display: block;
+  border-radius: 22px;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  filter: drop-shadow(0 18px 30px rgba(0, 0, 0, 0.55));
+}
+
+/* Dynamic Gloss Sheen */
+.card-reflection-sheen {
+  position: absolute;
+  inset: 0;
+  border-radius: 22px;
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.12) 0%, rgba(255, 255, 255, 0) 50%, rgba(255, 255, 255, 0.04) 100%);
+  pointer-events: none;
+  z-index: 3;
+}
+
+/* Continuous 3D Weightless Floating */
+@keyframes float3DDevice {
+  0% {
+    transform: perspective(1000px) rotateX(6deg) rotateY(-8deg) translateY(0px) translateZ(0);
+  }
+  50% {
+    transform: perspective(1000px) rotateX(2deg) rotateY(-3deg) translateY(-16px) translateZ(14px);
+  }
+  100% {
+    transform: perspective(1000px) rotateX(6deg) rotateY(-8deg) translateY(0px) translateZ(0);
+  }
+}
+
+/* Auto Orbit 3D Animation Mode */
+.stage-3d-card.auto-orbit {
+  animation: orbit3DDevice 9s cubic-bezier(0.45, 0.05, 0.55, 0.95) infinite !important;
+}
+
+@keyframes orbit3DDevice {
+  0% {
+    transform: perspective(1000px) rotateX(8deg) rotateY(-14deg) translateY(0px);
+  }
+  25% {
+    transform: perspective(1000px) rotateX(-6deg) rotateY(12deg) translateY(-14px);
+  }
+  50% {
+    transform: perspective(1000px) rotateX(-10deg) rotateY(-10deg) translateY(-6px);
+  }
+  75% {
+    transform: perspective(1000px) rotateX(5deg) rotateY(16deg) translateY(-18px);
+  }
+  100% {
+    transform: perspective(1000px) rotateX(8deg) rotateY(-14deg) translateY(0px);
+  }
+}
+
+/* ===================================================================
+   FLOATING HOLOGRAPHIC 3D HUD CHIPS (Depth in Z-Space)
+   =================================================================== */
+.hud-3d-chip {
+  position: absolute;
+  z-index: 5;
+  transform-style: preserve-3d;
+  transition: transform 0.22s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.25s ease;
+  pointer-events: auto;
+}
+
+.hud-chip-inner {
+  display: flex;
+  align-items: center;
+  gap: 11px;
+  padding: 9px 15px;
+  background: rgba(14, 18, 30, 0.9);
+  border: 1px solid rgba(56, 189, 248, 0.38);
+  border-radius: 12px;
+  box-shadow: 0 14px 34px rgba(0, 0, 0, 0.65),
+              0 0 20px rgba(56, 189, 248, 0.18);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  white-space: nowrap;
+}
+
+.hud-chip-icon {
+  font-size: 1.25rem;
+  line-height: 1;
+}
+
+.hud-chip-text {
+  display: flex;
+  flex-direction: column;
+}
+
+.hud-chip-label {
+  font-family: var(--font-mono);
+  font-size: 0.68rem;
+  font-weight: 500;
+  color: var(--text-tertiary);
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+}
+
+.hud-chip-val {
+  font-family: var(--font-heading);
+  font-size: 0.85rem;
+  font-weight: 700;
+  color: #ffffff;
+}
+
+/* Placement & Z-Depth Coordinates: App Design */
+.hud-chip-pos-1 {
+  top: -14px;
+  right: -16px;
+  transform: translateZ(70px);
+}
+
+.hud-chip-pos-2 {
+  bottom: 60px;
+  left: -24px;
+  transform: translateZ(55px);
+}
+
+.hud-chip-pos-3 {
+  bottom: -16px;
+  right: 28px;
+  transform: translateZ(80px);
+}
+
+/* Placement & Z-Depth Coordinates: Web Design */
+.hud-chip-pos-web-1 {
+  top: -16px;
+  left: -18px;
+  transform: translateZ(70px);
+}
+
+.hud-chip-pos-web-2 {
+  bottom: 50px;
+  right: -24px;
+  transform: translateZ(60px);
+}
+
+.hud-chip-pos-web-3 {
+  bottom: -16px;
+  left: 28px;
+  transform: translateZ(80px);
+}
+
+/* Chip Hover Interactions */
+.hud-3d-chip:hover {
+  transform: translateZ(95px) scale(1.08) !important;
+}
+
+.hud-3d-chip:hover .hud-chip-inner {
+  border-color: rgba(56, 189, 248, 0.85);
+  box-shadow: 0 18px 40px rgba(0, 0, 0, 0.75),
+              0 0 30px rgba(56, 189, 248, 0.4);
+}
+
+/* 3D Gyro Hint */
+.stage-hint-tag {
+  text-align: center;
+  margin-top: 24px;
+  font-family: var(--font-mono);
+  font-size: 0.76rem;
+  color: var(--text-tertiary);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 7px;
+}
+
+.hint-gyro-icon {
+  font-size: 0.95rem;
+  color: var(--accent-cyan);
+  animation: gyroWobble 2.4s ease-in-out infinite alternate;
+}
+
+@keyframes gyroWobble {
+  0% { transform: rotate(-20deg) scale(0.9); }
+  100% { transform: rotate(20deg) scale(1.1); }
+}
+
+/* Highlight button in card */
+.highlight-3d-btn {
+  color: #ff8573 !important;
+  font-weight: 700 !important;
+  border-color: rgba(255, 133, 115, 0.3) !important;
+  background: rgba(255, 133, 115, 0.08) !important;
+}
+
+.highlight-3d-btn:hover {
+  background: rgba(255, 102, 82, 0.25) !important;
+  color: #fff !important;
+  border-color: rgba(255, 102, 82, 0.6) !important;
+}
+
+/* ===================================================================
+   RESPONSIVE DESIGN FOR 3D SHOWCASE (991px & 768px BREAKPOINTS)
+   =================================================================== */
+@media (max-width: 991px) {
+  .showcase-section {
+    padding: 85px 0;
+  }
+
+  .showcase-container,
+  .showcase-container.showcase-reverse {
+    grid-template-columns: 1fr;
+    gap: 48px;
+    text-align: center;
+  }
+
+  /* Keep content first on mobile/tablet */
+  .showcase-container.showcase-reverse .showcase-content {
+    order: 1;
+  }
+
+  .showcase-container.showcase-reverse .showcase-visual-wrapper {
+    order: 2;
+  }
+
+  .showcase-heading {
+    font-size: 2.8rem;
+  }
+
+  .showcase-pills,
+  .showcase-actions {
+    justify-content: center;
+  }
+
+  .showcase-visual-wrapper {
+    max-width: 480px;
+    margin: 0 auto;
+  }
+
+  .hud-chip-pos-1, .hud-chip-pos-web-1 {
+    top: -10px;
+    right: 0;
+  }
+
+  .hud-chip-pos-2, .hud-chip-pos-web-2 {
+    left: 0;
+    bottom: 20px;
+  }
+}
+
+@media (max-width: 640px) {
+  .showcase-section {
+    padding: 65px 0;
+  }
+
+  .showcase-heading {
+    font-size: 2.2rem;
+  }
+
+  .showcase-subheading {
+    font-size: 1.05rem;
+  }
+
+  .showcase-copy {
+    font-size: 0.94rem;
+  }
+
+  .hud-3d-chip {
+    display: none; /* Hide floating chips on small mobile to avoid cramped viewport */
+  }
+
+  .showcase-actions {
+    flex-direction: column;
+    width: 100%;
+  }
+
+  .showcase-actions .btn,
+  .showcase-transform-link,
+  .btn-orbit-toggle {
+    width: 100%;
+    justify-content: center;
+  }
+}
+
+
 

@@ -80,6 +80,7 @@
       <nav>
         <ul class="nav-links">
           <li><a href="#specializations" class="nav-link">Specializations</a></li>
+          <li><a href="#app-design" class="nav-link">3D Showcase</a></li>
           <li><a href="#work" class="nav-link">Selected Work</a></li>
           <li><a href="#stack" class="nav-link">Arsenal</a></li>
           <li><a href="#hardware" class="nav-link">Hardware</a></li>
@@ -236,6 +237,186 @@
         </div>
       </div>
     </section>
+
+    <!-- ==================== 3D DESIGN SHOWCASE (INSPIRED BY THEVINUVINAN) ==================== -->
+    <div id="showcase-hub">
+      <!-- SECTION 01: App Design (lingua-flip) -->
+      <section class="section showcase-section showcase-app-design" id="app-design">
+        <div class="container showcase-container">
+          <div class="showcase-content blurb reveal">
+            <div class="showcase-eyebrow">
+              <span class="live-dot-purple"></span>
+              FEATURED APP DESIGN &bull; MOBILE UX
+            </div>
+            <h2 class="showcase-heading">lingua-flip</h2>
+            <h3 class="showcase-subheading">Cognitive Spaced Repetition Mobile Flashcards</h3>
+            <p class="showcase-copy">
+              A high-performance cross-platform mobile flashcard app built with <strong>Flutter</strong> and <strong>Dart</strong>. Engineered around the <strong>SuperMemo SM-2</strong> cognitive memory decay algorithm to dynamically schedule optimal review intervals with instant offline <strong>Hive NoSQL</strong> persistence and clean <strong>Riverpod</strong> state management.
+            </p>
+            
+            <div class="showcase-pills">
+              <span class="showcase-pill"><span class="pill-dot purple"></span> SuperMemo SM-2 Math</span>
+              <span class="showcase-pill"><span class="pill-dot cyan"></span> Flutter 3.x &amp; Riverpod</span>
+              <span class="showcase-pill"><span class="pill-dot green"></span> &lt;1.4ms Local Hive DB</span>
+              <span class="showcase-pill"><span class="pill-dot amber"></span> 94% Retention Efficiency</span>
+            </div>
+
+            <div class="showcase-actions">
+              <button class="btn btn-primary" onclick="openProjectModal('lingua-flip')">
+                View Architecture Spec ↗
+              </button>
+              <a href="https://github.com/mesanda456" target="_blank" rel="noopener noreferrer" class="showcase-transform-link">
+                <span>Check it out</span>
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+              </a>
+              <button class="btn-orbit-toggle" data-target="app-3d-card" title="Toggle 3D auto-orbit animation">
+                <span class="orbit-icon">✦</span>
+                <span class="orbit-text">Auto Orbit: OFF</span>
+              </button>
+            </div>
+          </div>
+
+          <!-- 3D Interactive Visual Stage: App Design (Phones floating in 3D perspective) -->
+          <div class="showcase-visual-wrapper showcase-visual-right" id="app-stage-wrapper">
+            <div class="showcase-stage" id="app-stage">
+              <div class="stage-ambient-glow"></div>
+              <div class="stage-grid-plane"></div>
+              
+              <!-- 3D Card / Device Holder with interactive tilt -->
+              <div class="stage-3d-card" id="app-3d-card">
+                <div class="card-reflection-sheen"></div>
+                <img src="assets/lingua-flip-3d-mockup.jpg" alt="lingua-flip 3D Mobile App Design Mockup" class="device-mockup-img">
+                
+                <!-- Floating Holographic 3D HUD Chips (True Z-Depth Layers) -->
+                <div class="hud-3d-chip hud-chip-pos-1">
+                  <div class="hud-chip-inner">
+                    <span class="hud-chip-icon">🧠</span>
+                    <div class="hud-chip-text">
+                      <span class="hud-chip-label">Algorithm</span>
+                      <span class="hud-chip-val">SuperMemo SM-2</span>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="hud-3d-chip hud-chip-pos-2">
+                  <div class="hud-chip-inner">
+                    <span class="hud-chip-icon">⚡</span>
+                    <div class="hud-chip-text">
+                      <span class="hud-chip-label">Read Latency</span>
+                      <span class="hud-chip-val">&lt; 1.4ms (Hive DB)</span>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="hud-3d-chip hud-chip-pos-3">
+                  <div class="hud-chip-inner">
+                    <span class="hud-chip-icon">🎯</span>
+                    <div class="hud-chip-text">
+                      <span class="hud-chip-label">Daily Streak</span>
+                      <span class="hud-chip-val">21 Days Active</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Interactive Badge Hint -->
+              <div class="stage-hint-tag">
+                <span class="hint-gyro-icon">⟲</span> Interactive 3D Tilt &bull; Move cursor across stage
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- SECTION 02: Web & Cloud Systems Design (MediConnect) -->
+      <section class="section showcase-section showcase-web-design" id="web-design">
+        <div class="container showcase-container showcase-reverse">
+          <!-- 3D Interactive Visual Stage: Web Design (Laptop floating in 3D perspective) -->
+          <div class="showcase-visual-wrapper showcase-visual-left" id="web-stage-wrapper">
+            <div class="showcase-stage" id="web-stage">
+              <div class="stage-ambient-glow stage-glow-cyan"></div>
+              <div class="stage-grid-plane"></div>
+              
+              <!-- 3D Card / Device Holder with interactive tilt -->
+              <div class="stage-3d-card" id="web-3d-card">
+                <div class="card-reflection-sheen"></div>
+                <img src="assets/mediconnect-3d-mockup.jpg" alt="MediConnect 3D Web & Microservices Design Mockup" class="device-mockup-img">
+                
+                <!-- Floating Holographic 3D HUD Chips -->
+                <div class="hud-3d-chip hud-chip-pos-web-1">
+                  <div class="hud-chip-inner">
+                    <span class="hud-chip-icon">🤖</span>
+                    <div class="hud-chip-text">
+                      <span class="hud-chip-label">AI Engine</span>
+                      <span class="hud-chip-val">Gemini 2.0 Triage</span>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="hud-3d-chip hud-chip-pos-web-2">
+                  <div class="hud-chip-inner">
+                    <span class="hud-chip-icon">🏥</span>
+                    <div class="hud-chip-text">
+                      <span class="hud-chip-label">Architecture</span>
+                      <span class="hud-chip-val">5 Spring Boot MS</span>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="hud-3d-chip hud-chip-pos-web-3">
+                  <div class="hud-chip-inner">
+                    <span class="hud-chip-icon">🐳</span>
+                    <div class="hud-chip-text">
+                      <span class="hud-chip-label">Containers</span>
+                      <span class="hud-chip-val">Docker Compose Mesh</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Interactive Badge Hint -->
+              <div class="stage-hint-tag">
+                <span class="hint-gyro-icon">⟲</span> Interactive 3D Tilt &bull; Move cursor across stage
+              </div>
+            </div>
+          </div>
+
+          <!-- Web Design Content Blurb -->
+          <div class="showcase-content blurb reveal">
+            <div class="showcase-eyebrow">
+              <span class="live-dot-green"></span>
+              FEATURED WEB &bull; DISTRIBUTED PLATFORM
+            </div>
+            <h2 class="showcase-heading">MediConnect</h2>
+            <h3 class="showcase-subheading">Enterprise Healthcare Microservices Architecture</h3>
+            <p class="showcase-copy">
+              A mission-critical clinical hospital ecosystem engineered to isolate core medical domains into <strong>5 decoupled Spring Boot 3 microservices</strong>. Features an intelligent clinical triage engine powered by <strong>Google Gemini AI</strong>, live telemetry dashboards in <strong>React 18</strong>, dedicated MySQL schemas, and full <strong>Docker</strong> containerization.
+            </p>
+            
+            <div class="showcase-pills">
+              <span class="showcase-pill"><span class="pill-dot green"></span> Spring Boot 3 (Java 17)</span>
+              <span class="showcase-pill"><span class="pill-dot cyan"></span> React 18 Telemetry</span>
+              <span class="showcase-pill"><span class="pill-dot purple"></span> Google Gemini 2.0 AI</span>
+              <span class="showcase-pill"><span class="pill-dot blue"></span> 5 Dedicated DB Schemas</span>
+            </div>
+
+            <div class="showcase-actions">
+              <button class="btn btn-primary" onclick="openProjectModal('mediconnect')">
+                View Microservices Topology ↗
+              </button>
+              <a href="https://github.com/mesanda456/hospital-frontend-main" target="_blank" rel="noopener noreferrer" class="showcase-transform-link">
+                <span>Check it out</span>
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+              </a>
+              <button class="btn-orbit-toggle" data-target="web-3d-card" title="Toggle 3D auto-orbit animation">
+                <span class="orbit-icon">✦</span>
+                <span class="orbit-text">Auto Orbit: OFF</span>
+              </button>
+            </div>
+          </div>
+        </div>
+      </section>
+    </div>
 
     <!-- ==================== SELECTED WORK ==================== -->
     <section class="section" id="work">

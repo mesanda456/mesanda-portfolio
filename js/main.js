@@ -14,6 +14,7 @@ document.addEventListener('DOMContentLoaded', () => {
   initCardSpotlight();
   initScrollReveal();
   initPortrait3DTilt();
+  init3DDesignShowcase();
 });
 
 /* ===================================================================
@@ -84,6 +85,8 @@ function initProjectsList() {
               <button class="card-link" style="background:none;border:none;cursor:pointer;" onclick="openProjectModal('${p.id}')">
                 Architecture ↗
               </button>
+              ${p.id === 'lingua-flip' ? `<a href="#app-design" class="card-link highlight-3d-btn" title="View 3D Animated Mobile Showcase">3D Showcase ✦</a>` : ''}
+              ${p.id === 'mediconnect' ? `<a href="#web-design" class="card-link highlight-3d-btn" title="View 3D Animated Web Showcase">3D Showcase ✦</a>` : ''}
             </div>
 
             <a href="${p.linkedinAddUrl}" target="_blank" rel="noopener noreferrer" class="linkedin-link-btn" title="Add project to your LinkedIn profile">
@@ -354,7 +357,9 @@ function initScrollReveal() {
     '.timeline-card-step',
     '.cert-card-flip',
     '.contact-converge-left',
-    '.contact-converge-right'
+    '.contact-converge-right',
+    '.showcase-visual-right',
+    '.showcase-visual-left'
   ].join(', ');
 
   const elements = document.querySelectorAll(selector);
@@ -538,5 +543,153 @@ function initRunningBottomBar() {
     toggleBtn.setAttribute('aria-label', isMin ? 'Expand Banner' : 'Minimize Banner');
   });
 }
+
+/* ===================================================================
+   11. Interactive 3D Design Showcase Controller (thevinuvinan-inspired)
+   =================================================================== */
+function init3DDesignShowcase() {
+  const stages = [
+    {
+      stageEl: document.getElementById('app-stage'),
+      cardEl: document.getElementById('app-3d-card'),
+      glowEl: document.querySelector('#app-stage .stage-ambient-glow'),
+      chips: document.querySelectorAll('#app-stage .hud-3d-chip'),
+      baseRotation: { x: 6, y: -8 }
+    },
+    {
+      stageEl: document.getElementById('web-stage'),
+      cardEl: document.getElementById('web-3d-card'),
+      glowEl: document.querySelector('#web-stage .stage-ambient-glow'),
+      chips: document.querySelectorAll('#web-stage .hud-3d-chip'),
+      baseRotation: { x: 6, y: 8 }
+    }
+  ];
+
+  stages.forEach(({ stageEl, cardEl, glowEl, chips, baseRotation }) => {
+    if (!stageEl || !cardEl) return;
+
+    let targetRotX = baseRotation.x;
+    let targetRotY = baseRotation.y;
+    let currentRotX = baseRotation.x;
+    let currentRotY = baseRotation.y;
+    let isHovering = false;
+    let animFrame = null;
+
+    function renderTilt() {
+      // Smooth interpolation (lerp)
+      currentRotX += (targetRotX - currentRotX) * 0.12;
+      currentRotY += (targetRotY - currentRotY) * 0.12;
+
+      if (!cardEl.classList.contains('auto-orbit')) {
+        cardEl.style.transform = `perspective(1100px) rotateX(${currentRotX.toFixed(2)}deg) rotateY(${currentRotY.toFixed(2)}deg) translateY(${isHovering ? '-12px' : '0px'}) scale3d(1.02, 1.02, 1.02)`;
+      }
+
+      if (isHovering || Math.abs(targetRotX - currentRotX) > 0.05 || Math.abs(targetRotY - currentRotY) > 0.05) {
+        animFrame = requestAnimationFrame(renderTilt);
+      } else {
+        animFrame = null;
+      }
+    }
+
+    function onPointerMove(clientX, clientY) {
+      if (cardEl.classList.contains('auto-orbit')) return;
+
+      const rect = stageEl.getBoundingClientRect();
+      const x = clientX - rect.left;
+      const y = clientY - rect.top;
+
+      // Normalized coordinates from center [-1 to 1]
+      const normX = Math.max(-1, Math.min(1, ((x / rect.width) - 0.5) * 2));
+      const normY = Math.max(-1, Math.min(1, ((y / rect.height) - 0.5) * 2));
+
+      // Calculate 3D angles
+      targetRotX = baseRotation.x + (-normY * 16);
+      targetRotY = baseRotation.y + (normX * 18);
+
+      // Move ambient spotlight glow with cursor
+      if (glowEl) {
+        glowEl.style.transform = `translate(calc(-50% + ${(normX * 50).toFixed(1)}px), calc(-50% + ${(normY * 50).toFixed(1)}px))`;
+      }
+
+      // Parallax translation for floating 3D HUD chips
+      chips.forEach((chip, i) => {
+        const factor = (i + 1) * 7;
+        const depth = 55 + (i * 12);
+        chip.style.transform = `translateZ(${depth}px) translate3d(${(normX * factor).toFixed(1)}px, ${(normY * factor).toFixed(1)}px, 0)`;
+      });
+
+      if (!animFrame) {
+        animFrame = requestAnimationFrame(renderTilt);
+      }
+    }
+
+    stageEl.addEventListener('mousemove', (e) => {
+      isHovering = true;
+      cardEl.style.animationPlayState = 'paused';
+      onPointerMove(e.clientX, e.clientY);
+    });
+
+    stageEl.addEventListener('mouseleave', () => {
+      isHovering = false;
+      cardEl.style.animationPlayState = 'running';
+      targetRotX = baseRotation.x;
+      targetRotY = baseRotation.y;
+
+      if (glowEl) {
+        glowEl.style.transform = 'translate(-50%, -50%)';
+      }
+
+      chips.forEach((chip, i) => {
+        const depth = 55 + (i * 12);
+        chip.style.transform = `translateZ(${depth}px) translate3d(0, 0, 0)`;
+      });
+
+      if (!animFrame) {
+        animFrame = requestAnimationFrame(renderTilt);
+      }
+    });
+
+    // Touch support for tablets & mobile
+    stageEl.addEventListener('touchmove', (e) => {
+      if (e.touches.length > 0) {
+        const touch = e.touches[0];
+        onPointerMove(touch.clientX, touch.clientY);
+      }
+    }, { passive: true });
+
+    stageEl.addEventListener('touchend', () => {
+      targetRotX = baseRotation.x;
+      targetRotY = baseRotation.y;
+      if (!animFrame) {
+        animFrame = requestAnimationFrame(renderTilt);
+      }
+    });
+  });
+
+  // Auto Orbit Toggle Buttons
+  const orbitButtons = document.querySelectorAll('.btn-orbit-toggle');
+  orbitButtons.forEach(btn => {
+    btn.addEventListener('click', () => {
+      const targetId = btn.getAttribute('data-target');
+      const targetCard = document.getElementById(targetId);
+      if (!targetCard) return;
+
+      const isOrbiting = targetCard.classList.toggle('auto-orbit');
+      btn.classList.toggle('orbit-active', isOrbiting);
+
+      const textSpan = btn.querySelector('.orbit-text');
+      if (textSpan) {
+        textSpan.textContent = isOrbiting ? 'Auto Orbit: ON ✦' : 'Auto Orbit: OFF';
+      }
+
+      if (isOrbiting) {
+        targetCard.style.animationPlayState = 'running';
+      } else {
+        targetCard.style.transform = '';
+      }
+    });
+  });
+}
+
 
 
