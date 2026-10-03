@@ -1,7 +1,7 @@
 # Mesanda Sethumika | Portfolio & Engineering Showcase 🚀
 
-[![Live Website](https://img.shields.io/badge/Live_Portfolio-mesanda456.github.io-blue?style=for-the-badge&logo=github)](https://mesanda456.github.io/mesanda-portfolio/)
-[![LinkedIn](https://img.shields.io/badge/LinkedIn-Mesanda_Sethumika-0A66C2?style=for-the-badge&logo=linkedin)](https://www.linkedin.com/in/mesanda-sethumika-064971275)
+[![Live Website](https://img.shields.io/badge/Live_Portfolio-mesanda.lk-blue?style=for-the-badge&logo=google-chrome)](https://mesanda.lk)
+[![LinkedIn](https://img.shields.io/badge/LinkedIn-Mesanda_Sethumika-0A66C2?style=for-the-badge&logo=linkedin)](https://www.linkedin.com/in/mesanda-sethumika/)
 [![GitHub](https://img.shields.io/badge/GitHub-mesanda456-181717?style=for-the-badge&logo=github)](https://github.com/mesanda456)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg?style=for-the-badge)](LICENSE)
 
@@ -50,10 +50,10 @@ To preview or run this portfolio locally on your machine:
 
 ## 📬 Contact & Connect
 
-- **Portfolio**: [mesanda456.github.io/mesanda-portfolio](https://mesanda456.github.io/mesanda-portfolio/)
-- **LinkedIn**: [Mesanda Sethumika](https://www.linkedin.com/in/mesanda-sethumika-064971275)
+- **Portfolio**: [mesanda.lk](https://mesanda.lk/)
+- **LinkedIn**: [Mesanda Sethumika](https://www.linkedin.com/in/mesanda-sethumika/)
 - **GitHub**: [@mesanda456](https://github.com/mesanda456)
-- **Email**: [sethumikamesanda@gmail.com](mailto:sethumikamesanda@gmail.com)
+- **Email**: [mesandasethumika@gmail.com](mailto:mesandasethumika@gmail.com)
 
 ---
 
