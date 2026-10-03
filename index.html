@@ -16,7 +16,7 @@
 
   <!-- Favicon -->
   <link rel="icon" type="image/svg+xml" href="assets/logo.svg">
-  <link rel="stylesheet" href="css/styles.css?v=3d">
+  <link rel="stylesheet" href="css/styles.css?v=3d-hero">
 </head>
 <body>
 
@@ -79,6 +79,7 @@
 
       <nav>
         <ul class="nav-links">
+          <li><a href="#overview" class="nav-link">About</a></li>
           <li><a href="#specializations" class="nav-link">Specializations</a></li>
           <li><a href="#app-design" class="nav-link">3D Showcase</a></li>
           <li><a href="#work" class="nav-link">Selected Work</a></li>
@@ -105,8 +106,40 @@
   </header>
 
   <main>
-    <!-- ==================== HERO SECTION ==================== -->
-    <section class="hero" id="hero">
+    <!-- ==================== SIGNATURE 3D HERO NAME (THEVINUVINAN STYLE) ==================== -->
+    <section class="introduction" id="hero">
+      <div class="introduction__content">
+        <span class="introduction__content-el introduction__content-el--name">Hello &nbsp; I'm</span>
+        <h1 class="introduction__content-el introduction__content-el--description" id="intro-name-3d">Mesanda</h1>
+        <span class="introduction__content-el introduction__content-el--job">Sethumika</span>
+      </div>
+
+      <div class="intro-meta-bar container">
+        <div class="intro-role-ticker">
+          <span class="live-dot-green"></span>
+          SOFTWARE ENGINEER &bull; DISTRIBUTED SYSTEMS &bull; IOT
+        </div>
+        <div class="intro-quick-actions">
+          <a href="assets/Mesanda_Sethumika_Resume.pdf" download="Mesanda_Sethumika_Resume.pdf" class="btn btn-primary btn-sm">
+            Download CV (PDF) ↗
+          </a>
+          <a href="#overview" class="btn btn-secondary btn-sm">
+            Profile &amp; Metrics ↓
+          </a>
+        </div>
+      </div>
+
+      <a href="#overview" class="introduction__arrow" aria-label="Scroll down to overview">
+        <span>SCROLL</span>
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+          <path d="M7 10l5 5 5-5"/>
+          <path d="M7 4l5 5 5-5"/>
+        </svg>
+      </a>
+    </section>
+
+    <!-- ==================== OVERVIEW & EDITORIAL PROFILE ==================== -->
+    <section class="hero hero-overview" id="overview">
       <div class="container hero-grid">
         <div class="hero-content">
           <div class="status-badge">
@@ -115,11 +148,12 @@
           </div>
 
           <div>
-            <h1 class="hero-title">
-              Mesanda Sethumika
-            </h1>
+            <div class="section-tag" style="margin-bottom: 8px;">Executive Profile</div>
+            <h2 class="hero-title" style="font-size: clamp(2rem, 3.2vw, 2.7rem);">
+              Software Engineer &amp; Systems Builder
+            </h2>
             <div class="hero-subheadline">
-              Software Engineer specializing in <span class="gradient-text">Distributed Systems</span>, <span class="gradient-text">React</span>, <span class="gradient-text">Flutter</span> & <span class="gradient-text">IoT</span>.
+              Specializing in <span class="gradient-text">Distributed Systems</span>, <span class="gradient-text">React</span>, <span class="gradient-text">Flutter</span> &amp; <span class="gradient-text">IoT</span>.
             </div>
           </div>
 
@@ -889,7 +923,7 @@
     </div>
   </aside>
 
-  <script src="js/projects.js?v=3d"></script>
-  <script src="js/main.js?v=3d"></script>
+  <script src="js/projects.js?v=3d-hero"></script>
+  <script src="js/main.js?v=3d-hero"></script>
 </body>
 </html>

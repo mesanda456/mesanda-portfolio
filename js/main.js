@@ -15,6 +15,7 @@ document.addEventListener('DOMContentLoaded', () => {
   initScrollReveal();
   initPortrait3DTilt();
   init3DDesignShowcase();
+  init3DHeroName();
 });
 
 /* ===================================================================
@@ -690,6 +691,114 @@ function init3DDesignShowcase() {
     });
   });
 }
+
+/* ===================================================================
+   12. Signature 3D Hero Name Controller (thevinuvinan style)
+   =================================================================== */
+function init3DHeroName() {
+  const introSection = document.querySelector('.introduction');
+  const introName = document.getElementById('intro-name-3d');
+  const arrow = document.querySelector('.introduction__arrow');
+  if (!introSection || !introName) return;
+
+  let targetX = 0;
+  let targetY = 0;
+  let currentX = 0;
+  let currentY = 0;
+  let isMoving = false;
+  let animId = null;
+
+  function update3D() {
+    currentX += (targetX - currentX) * 0.1;
+    currentY += (targetY - currentY) * 0.1;
+
+    introName.style.transform = `perspective(1000px) rotateX(${currentX.toFixed(2)}deg) rotateY(${currentY.toFixed(2)}deg) translateZ(35px) scale(1.02)`;
+
+    // Calculate light vector based on tilt
+    const normX = currentY / 22; // -1 to 1
+    const normY = -currentX / 18; // -1 to 1
+    const sx = (-normX * 8).toFixed(1);
+    const sy = (1 + (-normY * 6)).toFixed(1);
+
+    introName.style.textShadow = `
+      ${sx * 0.1}px ${+sy + 1}px 0 #ffe6e2,
+      ${sx * 0.2}px ${+sy + 2}px 0 #ffcec7,
+      ${sx * 0.3}px ${+sy + 3}px 0 #ffb5ab,
+      ${sx * 0.4}px ${+sy + 4}px 0 #ff998c,
+      ${sx * 0.5}px ${+sy + 5}px 0 #ff8070,
+      ${sx * 0.6}px ${+sy + 6}px 0 #ff6652,
+      ${sx * 0.7}px ${+sy + 7}px 0 #ea5340,
+      ${sx * 0.8}px ${+sy + 8}px 0 #d5412e,
+      ${sx * 0.9}px ${+sy + 9}px 0 #bf321f,
+      ${sx}px ${+sy + 10}px 0 #a92412,
+      0 12px 3px rgba(0, 0, 0, 0.22),
+      0 24px 40px rgba(255, 102, 82, 0.55),
+      0 38px 70px rgba(0, 0, 0, 0.65)
+    `;
+
+    if (isMoving || Math.abs(targetX - currentX) > 0.05 || Math.abs(targetY - currentY) > 0.05) {
+      animId = requestAnimationFrame(update3D);
+    } else {
+      animId = null;
+    }
+  }
+
+  function handlePointer(clientX, clientY) {
+    const rect = introSection.getBoundingClientRect();
+    const x = clientX - rect.left;
+    const y = clientY - rect.top;
+
+    const normX = Math.max(-1, Math.min(1, ((x / rect.width) - 0.5) * 2));
+    const normY = Math.max(-1, Math.min(1, ((y / rect.height) - 0.5) * 2));
+
+    targetX = -normY * 18;
+    targetY = normX * 22;
+
+    if (!animId) {
+      animId = requestAnimationFrame(update3D);
+    }
+  }
+
+  introSection.addEventListener('mousemove', (e) => {
+    isMoving = true;
+    handlePointer(e.clientX, e.clientY);
+  });
+
+  introSection.addEventListener('mouseleave', () => {
+    isMoving = false;
+    targetX = 0;
+    targetY = 0;
+    if (!animId) {
+      animId = requestAnimationFrame(update3D);
+    }
+  });
+
+  introSection.addEventListener('touchmove', (e) => {
+    if (e.touches.length > 0) {
+      handlePointer(e.touches[0].clientX, e.touches[0].clientY);
+    }
+  }, { passive: true });
+
+  introSection.addEventListener('touchend', () => {
+    targetX = 0;
+    targetY = 0;
+    if (!animId) {
+      animId = requestAnimationFrame(update3D);
+    }
+  });
+
+  // Smooth scroll for arrow
+  if (arrow) {
+    arrow.addEventListener('click', (e) => {
+      e.preventDefault();
+      const target = document.getElementById('overview');
+      if (target) {
+        target.scrollIntoView({ behavior: 'smooth' });
+      }
+    });
+  }
+}
+
 
 
 

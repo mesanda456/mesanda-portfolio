@@ -2811,5 +2811,245 @@ body.site-entered .portrait-stage {
   }
 }
 
+/* ===================================================================
+   MESANDA SETHUMIKA — SIGNATURE 3D HERO NAME (THEVINUVINAN STYLE)
+   Features: Massive Spatial Typography, Real-time 3D Perspective Tilt,
+             Multi-layered Extruded Text Shadows, & TVAG-style Watermark
+   =================================================================== */
+
+.introduction {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 90vh;
+  width: 100%;
+  padding: 60px 24px 70px;
+  perspective: 1200px;
+  perspective-origin: center center;
+  transform-style: preserve-3d;
+  overflow: hidden;
+  box-sizing: border-box;
+}
+
+/* TVAG-Style Giant Monogram Watermark */
+.introduction::before {
+  content: "MS";
+  position: absolute;
+  top: 48%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-family: var(--font-heading);
+  font-size: clamp(120px, 36vw, 540px);
+  font-weight: 900;
+  letter-spacing: -0.06em;
+  color: #ffffff;
+  opacity: 0.035;
+  pointer-events: none;
+  z-index: 0;
+  line-height: 1;
+  user-select: none;
+}
+
+.introduction__content {
+  position: relative;
+  z-index: 2;
+  width: 100%;
+  max-width: 1080px;
+  margin: 0 auto;
+  transform-style: preserve-3d;
+  will-change: transform;
+}
+
+.introduction__content-el {
+  display: block;
+  transform-style: preserve-3d;
+}
+
+.introduction__content-el--name {
+  font-family: var(--font-heading);
+  font-size: clamp(1.2rem, 3.2vw, 2.2rem);
+  font-weight: 800;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: #94a3b8;
+  transform: translateX(-35px);
+  opacity: 0;
+  transition: transform 0.9s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.9s ease;
+}
+
+.introduction__content-el--description {
+  display: block;
+  font-family: var(--font-heading);
+  font-size: clamp(3.8rem, 16.5vw, 12.8rem);
+  font-weight: 900;
+  line-height: 0.95;
+  text-transform: uppercase;
+  letter-spacing: -0.025em;
+  color: #ffffff;
+  margin: 12px 0 16px;
+  transform-style: preserve-3d;
+  will-change: transform, text-shadow;
+  cursor: grab;
+  user-select: none;
+
+  /* Iconic 3D Multi-Layer Extrusion Text Shadow directly from thevinuvinan.com */
+  text-shadow:
+    0 1px 0 #ffe6e2,
+    0 2px 0 #ffcec7,
+    0 3px 0 #ffb5ab,
+    0 4px 0 #ff998c,
+    0 5px 0 #ff8070,
+    0 6px 0 #ff6652,
+    0 7px 0 #e64f3c,
+    0 8px 0 #cc3a28,
+    0 9px 2px rgba(0, 0, 0, 0.18),
+    0 16px 28px rgba(255, 102, 82, 0.42),
+    0 28px 55px rgba(0, 0, 0, 0.55);
+  transition: text-shadow 0.35s ease, transform 0.15s ease-out;
+}
+
+.introduction:hover .introduction__content-el--description,
+.introduction__content-el--description.is-active-3d {
+  text-shadow:
+    0 1px 0 #ffe6e2,
+    0 2px 0 #ffcec7,
+    0 3px 0 #ffb5ab,
+    0 4px 0 #ff998c,
+    0 5px 0 #ff8070,
+    0 6px 0 #ff6652,
+    0 7px 0 #ea5340,
+    0 8px 0 #d5412e,
+    0 9px 0 #bf321f,
+    0 10px 0 #a92412,
+    0 12px 3px rgba(0, 0, 0, 0.22),
+    0 24px 40px rgba(255, 102, 82, 0.55),
+    0 38px 70px rgba(0, 0, 0, 0.65);
+}
+
+.introduction__content-el--job {
+  font-family: var(--font-heading);
+  font-size: clamp(1.2rem, 3.2vw, 2.2rem);
+  font-weight: 800;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: #ff6652;
+  text-align: right;
+  transform: translateX(35px);
+  opacity: 0;
+  transition: transform 0.9s cubic-bezier(0.16, 1, 0.3, 1) 0.15s, opacity 0.9s ease 0.15s;
+}
+
+/* Revealed animated states */
+.site-entered .introduction__content-el--name,
+.site-entered .introduction__content-el--job {
+  transform: translateX(0);
+  opacity: 1;
+}
+
+.intro-meta-bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 16px;
+  width: 100%;
+  max-width: 1080px;
+  margin-top: 40px;
+  padding-top: 24px;
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+  position: relative;
+  z-index: 2;
+}
+
+.intro-role-ticker {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-family: var(--font-mono);
+  font-size: 0.85rem;
+  color: var(--text-tertiary);
+  letter-spacing: 0.08em;
+}
+
+.intro-quick-actions {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+/* Signature Bouncing 3D Arrow (thevinuvinan style) */
+.introduction__arrow {
+  position: absolute;
+  bottom: 18px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 3px;
+  color: #ff6652;
+  text-decoration: none;
+  font-family: var(--font-mono);
+  font-size: 0.7rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  animation: arrowBounce3D 2.2s cubic-bezier(0.45, 0, 0.55, 1) infinite;
+  cursor: pointer;
+  z-index: 5;
+  transition: color 0.25s ease;
+}
+
+.introduction__arrow svg {
+  fill: none;
+  stroke: #ff6652;
+  transition: stroke 0.25s ease;
+}
+
+.introduction__arrow:hover {
+  color: #ffffff;
+}
+
+.introduction__arrow:hover svg {
+  stroke: #ffffff;
+}
+
+@keyframes arrowBounce3D {
+  0%, 100% {
+    transform: translate(-50%, 0) scale(1);
+  }
+  50% {
+    transform: translate(-50%, 12px) scale(1.08);
+  }
+}
+
+.hero.hero-overview {
+  padding-top: 70px;
+}
+
+@media (max-width: 768px) {
+  .introduction {
+    min-height: 80vh;
+    padding: 40px 18px 60px;
+  }
+
+  .introduction__content-el--description {
+    font-size: clamp(3.2rem, 18vw, 6.5rem);
+  }
+
+  .intro-meta-bar {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    gap: 14px;
+  }
+
+  .intro-role-ticker {
+    font-size: 0.78rem;
+  }
+}
+
+
 
 
