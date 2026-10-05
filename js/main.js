@@ -249,14 +249,97 @@ function initContactActions() {
   }
 
   if (form) {
-    form.addEventListener('submit', (e) => {
-      e.preventDefault();
-      const name = document.getElementById('contact-name').value;
-      const email = document.getElementById('contact-email').value;
-      const msg = document.getElementById('contact-msg').value;
+    const submitBtn = document.getElementById('btn-submit-contact') || form.querySelector('button[type="submit"]');
+    const statusBox = document.getElementById('contact-form-status');
 
-      const mailto = `mailto:mesandasethumika@gmail.com?subject=Portfolio Inquiry from ${encodeURIComponent(name)}&body=${encodeURIComponent(`From: ${name} (${email})\n\nMessage:\n${msg}`)}`;
-      window.location.href = mailto;
+    function setStatus(type, message) {
+      if (!statusBox) return;
+      statusBox.className = `form-status-alert form-status-${type}`;
+      statusBox.innerHTML = message;
+      statusBox.style.display = 'block';
+    }
+
+    form.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      const name = document.getElementById('contact-name')?.value.trim();
+      const email = document.getElementById('contact-email')?.value.trim();
+      const msg = document.getElementById('contact-msg')?.value.trim();
+
+      if (!name || !email || !msg) {
+        setStatus('error', 'Please fill out all fields before submitting.');
+        return;
+      }
+
+      // Visual sending state
+      const originalBtnHtml = submitBtn.innerHTML;
+      submitBtn.disabled = true;
+      submitBtn.innerHTML = `
+        <svg class="spinner" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" style="margin-right: 6px; vertical-align: -2px;">
+          <circle cx="12" cy="12" r="10" stroke-opacity="0.25"></circle>
+          <path d="M12 2a10 10 0 0 1 10 10" stroke-linecap="round"></path>
+        </svg>
+        Sending Direct Message...
+      `;
+      setStatus('loading', 'Transmitting directly to Mesanda\'s inbox...');
+
+      try {
+        const response = await fetch("https://formsubmit.co/ajax/mesandasethumika@gmail.com", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+            "Accept": "application/json"
+          },
+          body: JSON.stringify({
+            name: name,
+            email: email,
+            message: msg,
+            _subject: `New Portfolio Message from ${name} (${email})`,
+            _captcha: "false",
+            _template: "table"
+          })
+        });
+
+        const data = await response.json().catch(() => ({}));
+
+        if (response.ok && (data.success === "true" || data.success === true)) {
+          setStatus('success', `
+            <strong>✓ Message sent directly to Mesanda!</strong>
+            <p style="margin: 4px 0 0 0; font-size: 0.85rem; opacity: 0.95;">
+              Thank you, ${name}. Your message has landed in my inbox and I will reply to <strong>${email}</strong> shortly.
+            </p>
+          `);
+          form.reset();
+          submitBtn.innerHTML = `✓ Message Delivered`;
+          setTimeout(() => {
+            submitBtn.disabled = false;
+            submitBtn.innerHTML = originalBtnHtml;
+          }, 4500);
+        } else if (data.message && data.message.includes('Activation')) {
+          setStatus('success', `
+            <strong>✓ Transmission initiated!</strong>
+            <p style="margin: 4px 0 0 0; font-size: 0.85rem; opacity: 0.95;">
+              Your message was received! (FormSubmit sent a 1-click activation link to mesandasethumika@gmail.com for first-time verification).
+            </p>
+          `);
+          form.reset();
+          submitBtn.disabled = false;
+          submitBtn.innerHTML = originalBtnHtml;
+        } else {
+          throw new Error(data.message || 'Delivery service returned an error.');
+        }
+      } catch (err) {
+        console.warn('Direct submission error, presenting fallback:', err);
+        const mailtoFallback = `mailto:mesandasethumika@gmail.com?subject=Portfolio Inquiry from ${encodeURIComponent(name)}&body=${encodeURIComponent(`From: ${name} (${email})\n\nMessage:\n${msg}`)}`;
+        setStatus('error', `
+          <strong>Notice:</strong> Could not auto-deliver (${err.message || 'Network'}).<br>
+          <div style="margin-top: 8px;">
+            <a href="${mailtoFallback}" class="btn btn-secondary btn-sm" style="display: inline-block; margin-right: 8px;">Open Email Client ↗</a>
+            <a href="https://wa.me/94704606591?text=${encodeURIComponent(`Hi Mesanda, my name is ${name} (${email}):\n\n${msg}`)}" target="_blank" class="btn btn-whatsapp btn-sm" style="display: inline-block;">Send on WhatsApp ↗</a>
+          </div>
+        `);
+        submitBtn.disabled = false;
+        submitBtn.innerHTML = originalBtnHtml;
+      }
     });
   }
 }

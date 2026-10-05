@@ -20,7 +20,7 @@
 
   <!-- Favicon -->
   <link rel="icon" type="image/svg+xml" href="assets/logo.svg">
-  <link rel="stylesheet" href="css/styles.css?v=nav-v2">
+  <link rel="stylesheet" href="css/styles.css?v=contact-v3">
 </head>
 <body>
 
@@ -807,21 +807,26 @@
           <form id="contact-form">
             <div class="form-group">
               <label for="contact-name" class="form-label">Name</label>
-              <input type="text" id="contact-name" class="form-input" placeholder="Your Name or Organization" required>
+              <input type="text" id="contact-name" name="name" class="form-input" placeholder="Your Name or Organization" required autocomplete="name">
             </div>
 
             <div class="form-group">
               <label for="contact-email" class="form-label">Email</label>
-              <input type="email" id="contact-email" class="form-input" placeholder="name@company.com" required>
+              <input type="email" id="contact-email" name="email" class="form-input" placeholder="name@company.com" required autocomplete="email">
             </div>
 
             <div class="form-group">
               <label for="contact-msg" class="form-label">Message</label>
-              <textarea id="contact-msg" class="form-textarea" placeholder="Hi Mesanda, I would like to discuss..." required></textarea>
+              <textarea id="contact-msg" name="message" class="form-textarea" placeholder="Hi Mesanda, I would like to discuss..." required></textarea>
             </div>
 
+            <!-- Inline Live Feedback -->
+            <div id="contact-form-status" class="form-status-alert" style="display: none;" role="alert"></div>
+
             <div style="display: flex; gap: 12px; margin-top: 14px;">
-              <button type="submit" class="btn btn-primary" style="flex: 1;">Send Email</button>
+              <button type="submit" id="btn-submit-contact" class="btn btn-primary" style="flex: 1;">
+                <span class="btn-text">Send Direct Message</span>
+              </button>
               <button type="button" class="btn btn-whatsapp" id="btn-send-whatsapp">Chat via WhatsApp</button>
             </div>
           </form>
@@ -960,7 +965,7 @@
     </div>
   </aside>
 
-  <script src="js/projects.js?v=nav-v2"></script>
-  <script src="js/main.js?v=nav-v2"></script>
+  <script src="js/projects.js?v=contact-v3"></script>
+  <script src="js/main.js?v=contact-v3"></script>
 </body>
 </html>
