@@ -7,6 +7,7 @@ document.addEventListener('DOMContentLoaded', () => {
   initSiteEntryAnimation();
   initRunningBottomBar();
   initLiveGithubStats();
+  initWorkSlider();
   initProjectsList();
   initHardwareBench();
   initContactActions();
@@ -37,7 +38,105 @@ function initLiveGithubStats() {
 }
 
 /* ===================================================================
-   2. Projects Showcase & Architecture Modal with Staggered Transition
+   2A. Signature thevinuvinan.com Featured Projects Slider & Dots
+   =================================================================== */
+function initWorkSlider() {
+  const sliderList = document.getElementById('work-slider-list');
+  const sliderNav = document.getElementById('work-slider-nav');
+  if (!sliderList || !sliderNav || typeof PROJECTS_DATA === 'undefined') return;
+
+  const featured = PROJECTS_DATA.filter(p => p.featured);
+  if (featured.length === 0) return;
+
+  sliderList.innerHTML = '';
+  sliderNav.innerHTML = '';
+
+  featured.forEach((p, index) => {
+    const isActive = index === 0;
+
+    // Slide element
+    const slide = document.createElement('li');
+    slide.className = `work__list-el ${isActive ? 'work__list-el--is-active' : ''}`;
+    slide.dataset.index = index;
+
+    slide.innerHTML = `
+      <div class="work__content">
+        <div class="work__content-blurb blurb blurb--framed">
+          <span class="blurb__tag">${p.categoryLabel} &bull; ${p.year}</span>
+          <h3 class="blurb__heading">${p.headline || p.name}</h3>
+          <p class="blurb__copy">
+            <b>${p.boldLead || ''}</b> ${p.shortDesc}
+          </p>
+          <div class="work__actions-row">
+            <a class="transform-link" target="_blank" rel="noopener noreferrer" href="${p.githubUrl}">
+              ${p.actionText || 'See full project'} ↗
+            </a>
+            <button class="btn btn-secondary btn-sm" onclick="openProjectModal('${p.id}')">
+              Architecture Spec ↗
+            </button>
+            <a href="${p.linkedinAddUrl}" target="_blank" rel="noopener noreferrer" class="linkedin-link-btn" title="Add to LinkedIn profile" style="padding: 6px 12px; font-size: 0.78rem;">
+              LinkedIn ↗
+            </a>
+          </div>
+        </div>
+      </div>
+      <div class="work__visual">
+        <img src="${p.image}" alt="${p.name} Visual Preview" loading="lazy">
+      </div>
+    `;
+    sliderList.appendChild(slide);
+
+    // Nav Dot
+    const dot = document.createElement('li');
+    dot.className = `work__navigation-el ${isActive ? 'work__navigation-el--is-active' : ''}`;
+    dot.setAttribute('role', 'button');
+    dot.setAttribute('aria-label', `Go to project ${index + 1}: ${p.name}`);
+    dot.dataset.index = index;
+    dot.addEventListener('click', () => goToSlide(index));
+    sliderNav.appendChild(dot);
+  });
+
+  let currentIndex = 0;
+  let autoTimer = null;
+
+  function goToSlide(index) {
+    const slides = sliderList.querySelectorAll('.work__list-el');
+    const dots = sliderNav.querySelectorAll('.work__navigation-el');
+
+    slides.forEach((s, i) => {
+      s.classList.toggle('work__list-el--is-active', i === index);
+    });
+
+    dots.forEach((d, i) => {
+      d.classList.toggle('work__navigation-el--is-active', i === index);
+    });
+
+    currentIndex = index;
+  }
+
+  function startAutoAdvance() {
+    stopAutoAdvance();
+    autoTimer = setInterval(() => {
+      const nextIndex = (currentIndex + 1) % featured.length;
+      goToSlide(nextIndex);
+    }, 5500);
+  }
+
+  function stopAutoAdvance() {
+    if (autoTimer) {
+      clearInterval(autoTimer);
+      autoTimer = null;
+    }
+  }
+
+  sliderList.addEventListener('mouseenter', stopAutoAdvance);
+  sliderList.addEventListener('mouseleave', startAutoAdvance);
+
+  startAutoAdvance();
+}
+
+/* ===================================================================
+   2B. Projects Showcase Directory & Architecture Modal
    =================================================================== */
 function initProjectsList() {
   const grid = document.getElementById('projects-grid');
@@ -52,16 +151,20 @@ function initProjectsList() {
 
     filtered.forEach((p, index) => {
       const card = document.createElement('article');
-      // Alternating cinematic film-strip slide: even from left, odd from right
       const animClass = index % 2 === 0 ? 'work-slide-left' : 'work-slide-right';
       card.className = `project-card card-enter ${animClass}`;
       card.id = `project-${p.id}`;
-      // Staggered animation delay
       card.style.animationDelay = `${Math.min(index * 0.09, 0.45)}s`;
       card.style.transitionDelay = `${Math.min(index * 0.08, 0.4)}s`;
 
       card.innerHTML = `
         <div>
+          ${p.image ? `
+          <div class="card-thumb-wrap" style="margin: -24px -24px 18px -24px; height: 160px; overflow: hidden; border-radius: 12px 12px 0 0; position: relative;">
+            <img src="${p.image}" alt="${p.name}" style="width: 100%; height: 100%; object-fit: cover; opacity: 0.88; transition: transform 0.4s ease, opacity 0.3s ease;">
+            <div style="position: absolute; inset: 0; background: linear-gradient(to bottom, transparent 40%, rgba(13, 17, 28, 0.95) 100%);"></div>
+          </div>
+          ` : ''}
           <div class="card-top">
             <span class="card-tag">${p.categoryLabel}</span>
             <span class="card-year">${p.year}</span>

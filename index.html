@@ -20,7 +20,7 @@
 
   <!-- Favicon -->
   <link rel="icon" type="image/svg+xml" href="assets/logo.svg">
-  <link rel="stylesheet" href="css/styles.css?v=contact-v3">
+  <link rel="stylesheet" href="css/styles.css?v=work-slider-v1">
 </head>
 <body>
 
@@ -635,7 +635,23 @@
     <section id="work" class="work section">
       <div class="work__wrapper">
         <h2 class="title">Latest Projects</h2>
-        <p class="title-sub">Curated production codebases and academic engineering builds with 1-Click LinkedIn verification.</p>
+        <p class="title-sub">Curated production codebases and academic engineering builds with interactive architectural case studies.</p>
+
+        <!-- Signature thevinuvinan.com Interactive Featured Projects Slider -->
+        <div class="work__slider-container reveal">
+          <ul class="work__list" id="work-slider-list">
+            <!-- Rendered dynamically by initWorkSlider() from PROJECTS_DATA -->
+          </ul>
+          <ul class="work__navigation" id="work-slider-nav" aria-label="Project Slider Navigation">
+            <!-- Interactive slider dots populated dynamically -->
+          </ul>
+        </div>
+
+        <!-- Full Technical Projects Explorer -->
+        <div class="projects-explorer-header reveal delay-1" style="margin-top: 65px; text-align: center;">
+          <h3 style="font-size: 1.4rem; font-weight: 700; color: #fff; margin-bottom: 8px;">Technical Repository Directory</h3>
+          <p style="color: var(--text-tertiary); font-size: 0.92rem; margin-bottom: 22px;">Filter all 8 engineering codebases by stack or inspect system architecture topologies.</p>
+        </div>
 
         <div class="filter-row reveal delay-1">
           <button class="filter-chip active" data-filter="all">All Projects</button>
@@ -965,7 +981,7 @@
     </div>
   </aside>
 
-  <script src="js/projects.js?v=contact-v3"></script>
-  <script src="js/main.js?v=contact-v3"></script>
+  <script src="js/projects.js?v=work-slider-v1"></script>
+  <script src="js/main.js?v=work-slider-v1"></script>
 </body>
 </html>
